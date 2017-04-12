@@ -18,7 +18,8 @@ app.set('view engine', 'ejs')
 // TRYING TO LINK CSS
 var path = require('path')
 app.use(express.static(path.join(__dirname, 'public')))
-
+var ejsLayouts = require('express-ejs-layouts')
+app.use(ejsLayouts)
 // CONNECTING AND USING THE CONTROLLERS FILES
 var protwoController = require('./controller/protwo_controller')
 var signUp = require('./controller/signup')

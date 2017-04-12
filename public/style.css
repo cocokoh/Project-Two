@@ -5,8 +5,19 @@
 .paraone {
   width: 80%;
   margin-left:10%;
+  margin-top: 2%;
+  padding: 20px;
+  /*background-color: #B0B;*/
+  /*color: white;*/
+  font-family: 'Dosis', sans-serif;
+  font-size:16px;
 }
 
 .postone {
   text-align: center;
+}
+
+.register {
+  margin-left: 80%;
+  text-align: right;
 }

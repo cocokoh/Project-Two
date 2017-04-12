@@ -2,8 +2,7 @@ var express =require('express')
 var router = express.Router()
 var Protwo = require('../models/schematwo')
 
-// var ejsLayouts = require('express-ejs-layouts')
-// router.use(ejsLayouts)
+
 
 router.get('/', function (req, res){
   res.render('homepage')
