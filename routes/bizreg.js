@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Biz = require('../models/business')
 // var passport = require('passport')
-// var authe = require('./auth')
 // var config = require('../config/ppConfig')
 var signup=  require('./userreg')
 

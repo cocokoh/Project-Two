@@ -65,12 +65,14 @@ app.use(ejsLayouts)
 // CONNECTING AND USING THE CONTROLLERS FILES
 var main = require('./routes/indexroute')
 var userSign = require('./routes/userreg')
-var bizlogin = require('./routes/bizlogin')
+var bizlogin = require('./routes/bizud')
 var bizreg = require('./routes/bizreg')
+var userlogin = require('./routes/userud')
 app.use('/', main)
 app.use('/', userSign)
 app.use('/', bizlogin)
 app.use('/', bizreg)
+app.use('/', userlogin)
 
 app.use(function(req, res, next) {
   // before every route, attach the flash messages and current user to res.locals

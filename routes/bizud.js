@@ -38,7 +38,7 @@ router.put('/business/edit', isLoggedIn, function(req, res) {
         res.send("There was a problem updating the information to the database: " + err);
       } else {
 
-        res.redirect("/bizprofile");
+        res.redirect("/profile");
 
       }
     })
@@ -65,7 +65,7 @@ router.delete('/business/delete', function(req, res) {
         } else {
           //Returning success messages saying it was deleted
           console.log('DELETE removing ID: ' + biz._id);
-          res.redirect("/bizprofile");
+          res.redirect("/profile");
         }
       });
     }
