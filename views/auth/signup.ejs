@@ -1,7 +1,9 @@
+
 <form action="/register" method="POST">
+
   <div class="form-group">
-    <label for="authName">Name</label>
-    <input id="authName" class="form-control" type="text" name="name">
+    <label for="authName">Username</label>
+    <input id="authName" class="form-control" type="text" name="username">
   </div>
   <div class="form-group">
     <label for="authEmail">Email</label>
@@ -13,5 +15,17 @@
     <input id="authPassword" class="form-control" type="password" name="password">
   </div>
 
+  <%# <div class="form-group">
+    <label for="authPassword">Confirm Password</label>
+    <input id="authPassword" class="form-control" type="password" name="password2">
+  </div>%>
+
+  <div class="form-group">
+      <b>Business?</b> <input type="radio" name='business' value = 'true'>Yes</input>
+        <input type="radio" name='business' checked='checked' value ='false'>No</input>
+    </div>
+
+
   <input class="btn btn-primary" type="submit">
+
 </form>

@@ -1,0 +1,27 @@
+<h2>Delete Your Business</h2>
+<p>
+  Are you sure you want to remove your business?
+</p>
+
+<ul>
+
+    <li>
+    <%- restaurants.restaurant_name %>
+    </li>
+    <li>
+      <%- restaurants.email %>
+    </li>
+    <li>
+      <%- restaurants.cuisine %>
+    </li>
+    <li>
+      <%- restaurants.address %>
+    </li>
+
+
+
+</ul>
+
+<form action="/business/delete?_method=delete" method="post">
+  <button type="submit">Delete</button>
+</form>

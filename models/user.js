@@ -10,7 +10,7 @@ var userSchema = new mongoose.Schema({
     lowercase: true,
     match: emailRegex
   },
-  name: {
+  username: {
     type: String,
     required: true,
     minlength: [3, 'Name must be between 3 to 99 characters'],
@@ -21,6 +21,15 @@ var userSchema = new mongoose.Schema({
     required: true,
     minlength: [8, 'Name must be between 8 to 99 characters'],
     maxlength: [99, 'Name must be between 8 to 99 characters']
+  },
+  // password2: {
+  //   type: String,
+  //   required: true,
+  //   minlength: [8, 'Name must be between 8 to 99 characters'],
+  //   maxlength: [99, 'Name must be between 8 to 99 characters']
+  // },
+  business: {
+    type: Boolean
   }
 })
 
