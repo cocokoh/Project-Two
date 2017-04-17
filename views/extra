@@ -1,0 +1,36 @@
+<ul>
+
+    <li>
+    <%- restaurants.restaurant_name %>
+    </li>
+    <li>
+      <%- restaurants.email %>
+    </li>
+    <li>
+      <%- restaurants.cuisine %>
+    </li>
+    <li>
+      <%- restaurants.address %>
+    </li>
+
+
+
+</ul>
+
+Biz.findOne({email: req.user.email}, function (err,data){
+  if (err) next()
+res.render('bizprofile', { restaurants : data })
+
+
+
+
+  //   User.find({}, function (err, allUsers){
+  // if (err) console.error(err)
+  // allUsers.forEach(function(user){
+  //   newBiz.user.push(user.id)
+  // })
+  // console.log(req.user.email)
+  // newBiz.ownedby = User.find({email:req.user.email})
+//   newBiz.save()
+//   console.log(newBiz)
+// })

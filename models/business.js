@@ -1,12 +1,13 @@
 var mongoose = require('mongoose')
 // var bcrypt = require('bcrypt')
 var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+var User = require('../models/user')
 
 var bizSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
     lowercase: true,
     match: emailRegex
   },
@@ -51,6 +52,10 @@ var bizSchema = new mongoose.Schema({
     required: true,
     minlength: [3, 'Name must be between 8 to 99 characters'],
     maxlength: [99, 'Name must be between 8 to 99 characters']
+  },
+  ownedby: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
   }
 })
 

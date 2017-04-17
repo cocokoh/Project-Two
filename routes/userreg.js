@@ -5,6 +5,8 @@ var passport = require('passport')
 // var authe = require('./auth')
 var config = require('../config/ppConfig')
 var bizreg = require('./bizreg')
+var isLoggedIn = require('../middleware/isLoggedIn')
+var Biz = require('../models/business')
 
 router.route('/register')
   .get(function(req, res) {
@@ -28,10 +30,12 @@ router.route('/register')
     if (newUser.username === "" || newUser.email === "" || newUser.password === "" ) {
       res.send('error')
       // res.redirect('/register')
-    } else if (newUser.business === true) {
-      newUser.save()
-      res.redirect('/bizreg')
-    } else {
+    }
+    // else if (newUser.business === true) {
+    //   newUser.save()
+    //   res.redirect('/bizreg')
+    // }
+     else {
       newUser.save(function(err, data) {
         if (err) return res.redirect('/register')
         res.redirect('/login')
@@ -43,20 +47,40 @@ router.route('/register')
 
 
 router.get('/login', function(req, res) {
-  res.render('auth/login');
+  res.render('auth/login')
 });
 
 // FLASH
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
-  failureRedirect: '/login',
-  failureFlash: 'Invalid username and/or password',
-  successFlash: 'You have logged in'
-}))
+    failureRedirect: '/login'
+  }), (req, res) => {
+   Biz.findOne({ownedby : req.user.id}, function (err,data){
+    var datas= data
+// console.log(datas.ownedby)
+// console.log(req.user.id)
+    if(datas){
+      if (datas.ownedby.equals(req.user.id) && req.user.business === true) {
+      res.redirect('/profile')
+    }}
+
+    else if  (req.user.business === true) {
+      res.redirect('/bizreg');
+    }
+    else {
+      res.redirect('/profile');
+    }
+})
+  });
+// {
+//   successRedirect: '/profile',
+//   failureRedirect: '/login',
+//   failureFlash: 'Invalid username and/or password',
+//   successFlash: 'You have logged in'
+// }))
 
 
 
-router.get('/logout', function(req, res) {
+router.get('/logout', isLoggedIn, function(req, res) {
   req.logout();
   // FLASH
   req.flash('success', 'You have logged out');

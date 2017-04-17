@@ -4,6 +4,7 @@ var Biz = require('../models/business')
 // var passport = require('passport')
 // var config = require('../config/ppConfig')
 var signup=  require('./userreg')
+var User = require('../models/user')
 
 router.get('/bizreg', (function(req, res) {
     res.render('auth/bizreg');
@@ -15,14 +16,19 @@ router.post('/bizreg', function(req, res) {
     var address = req.body.address
     var cuisine = req.body.cuisine
     var email = req.body.email
+    var ownedby = req.user
+    // console.log(req.user)
+    // console.log(ownedby)
 
     var newBiz = new Biz({
       restaurant_name: restaurant_name,
       nealicense: nealicense,
       address: address,
       cuisine: cuisine,
-      email: email
+      email: email,
+      ownedby: ownedby
     })
+
     // for (var i = 0; i < 7; i++) {
     //   if ((Object.values(req.body))[i] === "") {
     if (newBiz.restaurant_name === "" || newBiz.nealicense === "" || newBiz.address === "" || newBiz.cuisine === "" || newBiz.email === "") {
@@ -30,8 +36,8 @@ router.post('/bizreg', function(req, res) {
       // res.redirect('/register')
     } else {
       newBiz.save(function(err, data) {
-        if (err) return res.redirect('/register')
-        res.redirect('/login')
+        if (err) throw err
+        res.redirect('/profile')
       })
     }
   })

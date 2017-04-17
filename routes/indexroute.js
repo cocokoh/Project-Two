@@ -12,6 +12,7 @@ router.get('/', function (req, res){
 
 router.post('/', function (req,res){
   biz.find({cuisine: req.body.cuisine}, function(err,data){
+    if (err) res.send('error try again')
     res.render('restaurant', {restaurant: data})
   })
 })

@@ -30,7 +30,8 @@ var userSchema = new mongoose.Schema({
   // },
   business: {
     type: Boolean
-  }
+  },
+  
 })
 
 

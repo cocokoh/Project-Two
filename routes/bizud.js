@@ -6,10 +6,10 @@ var config = require('../config/ppConfig')
 var isLoggedIn = require('../middleware/isLoggedIn')
 var Biz = require('../models/business')
 
-router.get('/profile', isLoggedIn, function(req, res) {
+router.get('/profile/', isLoggedIn, function(req, res) {
   // console.log(req.user)
   if (req.user.business === true) {
-  Biz.findOne({email: req.user.email}, function (err,data){
+  Biz.findOne({ownedby: req.user.id}, function (err,data){
     if (err) next()
   res.render('bizprofile', { restaurants : data })
 })} else {
@@ -26,7 +26,7 @@ router.get('/business/edit', isLoggedIn, function(req, res) {
 router.put('/business/edit', isLoggedIn, function(req, res) {
   var address = req.body.address
   //find the document by ID
-  Biz.findOne({email: req.user.email}, function(err, biz) {
+  Biz.findOne({ownedby: req.user.id}, function(err, biz) {
     if (err) {
       return console.error(err);
     } else {
@@ -46,7 +46,7 @@ router.put('/business/edit', isLoggedIn, function(req, res) {
 });
 router.get('/business/delete', isLoggedIn, function(req, res) {
   // console.log(req.user.id)
-  Biz.findOne({email: req.user.email}, function (err,data){
+  Biz.findOne({ownedby: req.user.id}, function (err,data){
     if (err) next()
   res.render('bizdelete', { restaurants : data })
 })
@@ -54,7 +54,8 @@ router.get('/business/delete', isLoggedIn, function(req, res) {
 
 router.delete('/business/delete', function(req, res) {
   // console.log(req.user.id)
-  Biz.findOne({email:req.user.email}, function(err, biz) {
+
+  Biz.findOne({ownedby:req.user.id}, function(err, biz) {
     if (err) {
       return console.error(err);
     } else {
@@ -63,9 +64,13 @@ router.delete('/business/delete', function(req, res) {
         if (err) {
           return console.error(err);
         } else {
+          User.findOneAndUpdate({email:req.user.email}, {$set: {business:false}}, function (err, email){
+            if (err) throw err
+          })
           //Returning success messages saying it was deleted
-          console.log('DELETE removing ID: ' + biz._id);
-          res.redirect("/profile");
+          console.log('DELETE removing ID: ' + biz._id)
+          res.redirect("/");
+
         }
       });
     }
