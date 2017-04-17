@@ -6,7 +6,7 @@ var config = require('../config/ppConfig')
 var isLoggedIn = require('../middleware/isLoggedIn')
 var Biz = require('../models/business')
 
-router.get('/profile/', isLoggedIn, function(req, res) {
+router.get('/profile', isLoggedIn, function(req, res) {
   // console.log(req.user)
   if (req.user.business === true) {
   Biz.findOne({ownedby: req.user.id}, function (err,data){
@@ -25,6 +25,10 @@ router.get('/business/edit', isLoggedIn, function(req, res) {
 })
 router.put('/business/edit', isLoggedIn, function(req, res) {
   var address = req.body.address
+  var location = req.body.location
+  var promotion = req.body.promotion
+  var description = req.body.description
+  
   //find the document by ID
   Biz.findOne({ownedby: req.user.id}, function(err, biz) {
     if (err) {
@@ -32,7 +36,10 @@ router.put('/business/edit', isLoggedIn, function(req, res) {
     } else {
     //update it
     biz.update({
-      address: address
+      address: address,
+      location: location,
+      description: description,
+      promotion: promotion
     }, function(err, dataID) {
       if (err) {
         res.send("There was a problem updating the information to the database: " + err);

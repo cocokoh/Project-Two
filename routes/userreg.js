@@ -17,12 +17,14 @@ router.route('/register')
     var email = req.body.email
     var password = req.body.password
     var business = req.body.business
+    var birthday = req.body.birthday
 
     var newUser = new User({
       email: email,
       username: username,
       password: password,
-      business: business
+      business: business,
+      birthday: birthday
     })
     // for (var i = 0; i < 7; i++) {
     //   if ((Object.values(req.body))[i] === "") {

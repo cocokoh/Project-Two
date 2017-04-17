@@ -17,6 +17,11 @@ router.post('/bizreg', function(req, res) {
     var cuisine = req.body.cuisine
     var email = req.body.email
     var ownedby = req.user
+    var promotion = req.body.promotion
+    var contact = req.body.contact
+    var description = req.body.description
+    var location = req.body.location
+    
     // console.log(req.user)
     // console.log(ownedby)
 
@@ -26,7 +31,11 @@ router.post('/bizreg', function(req, res) {
       address: address,
       cuisine: cuisine,
       email: email,
-      ownedby: ownedby
+      ownedby: ownedby,
+      description: description,
+      contact: contact,
+      promotion: promotion,
+      location: location
     })
 
     // for (var i = 0; i < 7; i++) {

@@ -11,24 +11,24 @@ var bizSchema = new mongoose.Schema({
     lowercase: true,
     match: emailRegex
   },
-  // description: {
-  //   type: String,
-  //   required: true,
-  //   minlength: [100, 'Name must be between 100 to 1000 characters'],
-  //   maxlength: [1000, 'Name must be between 100 to 1000 characters']
-  // },
-  // password: {
-  //   type: String,
-  //   required: true,
-  //   minlength: [8, 'Name must be between 8 to 99 characters'],
-  //   maxlength: [99, 'Name must be between 8 to 99 characters']
-  // },
-  // password2: {
-  //   type: String,
-  //   required: true,
-  //   minlength: [8, 'Name must be between 8 to 99 characters'],
-  //   maxlength: [99, 'Name must be between 8 to 99 characters']
-  // },
+  description: {
+    type: String,
+    required: true,
+    minlength: [1, 'Name must be between 100 to 1000 characters'],
+    maxlength: [1000, 'Name must be between 100 to 1000 characters']
+  },
+  contact: {
+    type: Number,
+    required: true,
+    minlength: [8, 'Name must be between 8 to 99 characters'],
+    maxlength: [17, 'Name must be between 8 to 99 characters']
+  },
+  promotion: {
+    type: String,
+    required: true,
+    minlength: [8, 'Name must be between 8 to 99 characters'],
+    maxlength: [99, 'Name must be between 8 to 99 characters']
+  },
   restaurant_name: {
     type: String,
     required: true,
@@ -40,6 +40,10 @@ var bizSchema = new mongoose.Schema({
     required: true
     // minlength: [8, 'Name must be between 8 to 99 characters'],
     // maxlength: [99, 'Name must be between 8 to 99 characters']
+  },
+  location: {
+    type: String,
+    required : true
   },
   address: {
     type: String,

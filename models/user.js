@@ -31,7 +31,11 @@ var userSchema = new mongoose.Schema({
   business: {
     type: Boolean
   },
-  
+  birthday: {
+    type: Date,
+    required: true
+
+  }
 })
 
 
