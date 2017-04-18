@@ -27,3 +27,20 @@
   background-color: red;
   position: relative;
 }
+
+.table{
+  margin-top: 5%;
+  width: 100%;
+  text-align: left;
+  margin-left: 10%;
+}
+
+.description{
+  margin-top: 2%;
+  margin-left:20%;
+}
+
+.restaurantprofile{
+  margin-left: 20%;
+  margin-top: 5%;
+}

@@ -1,38 +1,41 @@
 <h2>Business Details</h2>
 
+<% restaurants.forEach(function(data){ %>
 <ul>
-
     <li>
-    <%- restaurants.restaurant_name %>
+    <%- data.restaurant_name %>
     </li>
     <li>
-      <%- restaurants.email %>
+      <%- data.email %>
     </li>
     <li>
-      <%- restaurants.cuisine %>
+      <%- data.cuisine %>
     </li>
     <li>
-      <%- restaurants.address %>
+      <%- data.address %>
     </li>
     <li>
-      <%- restaurants.contact %>
+      <%- data.contact %>
     </li>
     <li>
-      <%- restaurants.description %>
-    </li>
-
-    <li>
-      <%- restaurants.promotion %>
-    </li>
-    <li>
-      <%- restaurants.location %>
+      <%- data.description %>
     </li>
 
-
-
+    <li>
+      <%- data.promotion %>
+    </li>
+    <li>
+      <%- data.location %>
+    </li>
 </ul>
+<a href = '/business/edit'>Edit Business</a>
+<% }) %>
 
+
+
+
+<a href = '/bizreg'>Create New Business</a>
 <a href = '/user/edit'>Edit Account</a>
 
-<a href = '/business/edit'>Edit Business</a>
+
 <a href = '/business/delete'>Delete Business</a>

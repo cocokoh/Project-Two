@@ -28,6 +28,13 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
+app.use(function(req, res, next) {
+  // before every route, attach the flash messages and current user to res.locals
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  next();
+});
+
 
 // app.use(expressValidator({
 //   errorFormatter: function(param, msg, value) {
@@ -74,12 +81,7 @@ app.use('/', bizlogin)
 app.use('/', bizreg)
 app.use('/', userlogin)
 
-app.use(function(req, res, next) {
-  // before every route, attach the flash messages and current user to res.locals
-  res.locals.alerts = req.flash();
-  res.locals.currentUser = req.user;
-  next();
-});
+
 
 app.listen(port, function(){
   console.log('listening to ' + port)

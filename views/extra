@@ -24,6 +24,31 @@ res.render('bizprofile', { restaurants : data })
 
 
 
+<form action="/results" method="POST">
+  <%# <div class="form-group">
+    <label for="cuisine">Cuisine</label>
+    <input id="cuisine" class="form-control" type="text" name="cuisine">
+  </div>%>
+
+I want to eat
+  <select id = 'cuisine' type ='text' name = 'cuisine'>
+    <option value=""></option>
+    <% cuisine.forEach(function(data){ %>
+      <option value="<%- data %>"><%- data %></option>
+    <% }) %>
+  </select>
+  food in
+  <select id = 'location' type ='text' name = 'location'>
+    <% location.forEach(function(data){ %>
+      <option value="<%- data %>"><%- data %></option>
+    <% }) %>
+  </select>
+  <input class="btn btn-primary" type="submit" value='Search'>
+</form>
+
+
+
+
   //   User.find({}, function (err, allUsers){
   // if (err) console.error(err)
   // allUsers.forEach(function(user){

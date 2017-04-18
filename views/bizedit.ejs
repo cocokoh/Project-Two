@@ -1,21 +1,20 @@
 <h2>Edit</h2>
 <form action="/business/edit?_method=put" method="POST">
-
   <div class="form-group">
     <label for="Address">Address</label>
-    <input id="Address" class="form-control" type="text" name="address">
+    <input id="Address" class="form-control" type="text" name="address" value = '<%- business.address %>'>
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <input id="description" class="form-control" type="text" name="description">
+    <input id="description" class="form-control" type="text" name="description" value = '<%- business.description %>'>
   </div>
   <div class="form-group">
     <label for="Promotions">Promotions</label>
-    <input id="Promotions" class="form-control" type="text" name="promotion">
+    <input id="Promotions" class="form-control" type="text" name="promotion" value = '<%- business.promotion %>'>
   </div>
 
   Location
-  <select type='text' name='location'>
+  <select type='text' name='location' value = '<%- business.location %>'>
     <option value="Afghanistan">Afghanistan</option>
       <option value="Albania">Albania</option>
       <option value="Algeria">Algeria</option>
@@ -61,15 +60,13 @@
       <option value="Chile">Chile</option>
       <option value="China">China</option>
       <option value="Christmas Island">Christmas Island</option>
-      <option value="Cocos Islands">Cocos (Keeling) Islands</option>
       <option value="Colombia">Colombia</option>
       <option value="Comoros">Comoros</option>
       <option value="Congo">Congo</option>
       <option value="Congo">Congo, the Democratic Republic of the</option>
       <option value="Cook Islands">Cook Islands</option>
       <option value="Costa Rica">Costa Rica</option>
-      <option value="Cota D'Ivoire">Cote d'Ivoire</option>
-      <option value="Croatia">Croatia (Hrvatska)</option>
+      <option value="Croatia">Croatia</option>
       <option value="Cuba">Cuba</option>
       <option value="Cyprus">Cyprus</option>
       <option value="Czech Republic">Czech Republic</option>
@@ -85,7 +82,6 @@
       <option value="Eritrea">Eritrea</option>
       <option value="Estonia">Estonia</option>
       <option value="Ethiopia">Ethiopia</option>
-      <option value="Falkland Islands">Falkland Islands (Malvinas)</option>
       <option value="Faroe Islands">Faroe Islands</option>
       <option value="Fiji">Fiji</option>
       <option value="Finland">Finland</option>
@@ -129,13 +125,11 @@
       <option value="Kazakhstan">Kazakhstan</option>
       <option value="Kenya">Kenya</option>
       <option value="Kiribati">Kiribati</option>
-      <option value="Democratic People's Republic of Korea">Korea, Democratic People's Republic of</option>
       <option value="Korea">Korea, Republic of</option>
       <option value="Kuwait">Kuwait</option>
       <option value="Kyrgyzstan">Kyrgyzstan</option>
-      <option value="Lao">Lao People's Democratic Republic</option>
       <option value="Latvia">Latvia</option>
-      <option value="Lebanon" selected>Lebanon</option>
+      <option value="Lebanon">Lebanon</option>
       <option value="Lesotho">Lesotho</option>
       <option value="Liberia">Liberia</option>
       <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>

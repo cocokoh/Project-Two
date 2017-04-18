@@ -1,18 +1,23 @@
-<ul>
+<table class = 'table'>
   <% restaurant.forEach(function (data){ %>
-    <li>
-    <a href = '#'><%= data.restaurant_name %></a>
-    </li>
-    <li>
-      <%= data.email %>
-    </li>
-    <li>
-      <%= data.cuisine %>
-    </li>
-    <li>
-      <%= data.address %>
-    </li>
+
+  <thead>
+    <tr>
+    <th><a href = 'restaurant/profile/<%- data.restaurant_name %>'><%= data.restaurant_name %></a>
+
+    </th>
+    </tr>
+    <tr>
+
+
+    <td>
+    <%= data.description %>
+    </td>
+    </tr>
+  </thead>
+
+
 <%  }) %>
+  </table>
 
-
-</ul>
+  

@@ -9,7 +9,7 @@ var Biz = require('../models/business')
 router.get('/profile', isLoggedIn, function(req, res) {
   // console.log(req.user)
   if (req.user.business === true) {
-  Biz.findOne({ownedby: req.user.id}, function (err,data){
+  Biz.find({ownedby: req.user.id}, function (err,data){
     if (err) next()
   res.render('bizprofile', { restaurants : data })
 })} else {
@@ -20,15 +20,17 @@ router.get('/profile', isLoggedIn, function(req, res) {
 })
 
 router.get('/business/edit', isLoggedIn, function(req, res) {
+  Biz.findOne({ownedby: req.user.id}, function(err, biz) {
   // console.log(req.user)
-  res.render('bizedit')
+  res.render('bizedit', {business: biz})
+})
 })
 router.put('/business/edit', isLoggedIn, function(req, res) {
   var address = req.body.address
   var location = req.body.location
   var promotion = req.body.promotion
   var description = req.body.description
-  
+
   //find the document by ID
   Biz.findOne({ownedby: req.user.id}, function(err, biz) {
     if (err) {
