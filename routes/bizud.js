@@ -19,20 +19,20 @@ router.get('/profile', isLoggedIn, function(req, res) {
 }
 })
 
-router.get('/business/edit', isLoggedIn, function(req, res) {
-  Biz.findOne({ownedby: req.user.id}, function(err, biz) {
+router.get('/business/:id/edit', isLoggedIn, function(req, res) {
+  Biz.findOne({_id: req.params.id}, function(err, biz) {
   // console.log(req.user)
   res.render('bizedit', {business: biz})
 })
 })
-router.put('/business/edit', isLoggedIn, function(req, res) {
+router.put('/business/:id/edit', isLoggedIn, function(req, res) {
   var address = req.body.address
   var location = req.body.location
   var promotion = req.body.promotion
   var description = req.body.description
 
   //find the document by ID
-  Biz.findOne({ownedby: req.user.id}, function(err, biz) {
+  Biz.findOne({_id: req.params.id}, function(err, biz) {
     if (err) {
       return console.error(err);
     } else {
