@@ -18,15 +18,17 @@
   <b>Ongoing Promotions:</b>
   <%- data.promotion %>
 </div>
-
+<div class= 'reviewheader'>
 <a href = '/reviews/<%- data.id %>'>Write a Review</a>
 <% }) %>
-
-<div class = 'review'>
+<br /><br />
   <b>Reviews</b>
-  <br /><br />
-
-<b>Title: </b><%= review.title %>
-<br />
-<b>Comment: </b><%= review.comment %>
 </div>
+
+<%  review.forEach(function(data){ %>
+  <div class = 'review'>
+<b>Title: </b><%= data.title %>
+<br />
+<b>Comment: </b><%= data.comment %>
+</div>
+<% }) %>
