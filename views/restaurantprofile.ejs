@@ -1,31 +1,32 @@
 
 <div class = 'restaurantprofile'>
-  <h2><%- restaurant.restaurant_name %></a></h2>
-  <b>Serving:</b> <%- restaurant.cuisine %> Cuisine
+<%  restaurant.forEach(function(data){ %>
+  <h2><%- data.restaurant_name %></a></h2>
+  <b>Serving:</b> <%- data.cuisine %> Cuisine
   <br /> <br />
-  <b>In:</b> <%- restaurant.location %>
+  <b>In:</b> <%- data.location %>
   <br><br />
 </div>
 
 <div class = 'description'>
   <b>Description:</b>
-    <%- restaurant.description %>
+    <%- data.description %>
 <br /><br />
   <b>Find them at:</b>
-    <%- restaurant.address %>
+    <%- data.address %>
 <br /><br />
   <b>Ongoing Promotions:</b>
-  <%- restaurant.promotion %>
+  <%- data.promotion %>
 </div>
 
-<a href = '/reviews/<%- restaurant.id %>'>Write a Review</a>
-
+<a href = '/reviews/<%- data.id %>'>Write a Review</a>
+<% }) %>
 
 <div class = 'review'>
   <b>Reviews</b>
   <br /><br />
 
-<b>Title: </b><%= review[0].title %>
+<b>Title: </b><%= review.title %>
 <br />
-<b>Comment: </b><%= review[0].comment %>
+<b>Comment: </b><%= review.comment %>
 </div>
