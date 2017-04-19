@@ -1,5 +1,6 @@
 var express = require('express')
 var app = express()
+require('dotenv').config({ silent: true })
 var mongoose = require('mongoose')
 var port = process.env.PORT || 4000
 var dbURI = process.env.PROD_MONGODB || 'mongodb://localhost:27017/projecttwo'
@@ -21,7 +22,7 @@ var session = require('express-session')
 var passport = require('./config/ppConfig')
 
 app.use(session({
-  secret: 'secret',
+  secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
   resave: true
 }))
