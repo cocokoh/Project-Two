@@ -59,3 +59,35 @@ I want to eat
 //   newBiz.save()
 //   console.log(newBiz)
 // })
+
+
+
+
+
+biz.remove(function(err, biz) {
+  if (err) {
+    return console.error(err);
+  } else {
+    // Biz.find({ownedby: req.user.id}, function(err, biz){
+    //   // console.log(biz)
+    //   if (biz) {
+    //     // res.render('bizprofile', {restaurants: biz})
+    //   } else {
+    //
+    User.findOneAndUpdate({email:req.user.email}, {$set: {business:false}}, function (err, email){
+      if (err) throw err
+      })}
+      
+
+    //Returning success messages saying it was deleted
+    console.log('DELETE removing ID: ' + biz._id)
+    res.redirect("/");
+
+  // })
+}
+
+});
+}
+
+});
+});

@@ -7,13 +7,14 @@
     <link rel="stylesheet" type="text/css" href="/style.css"/>
   </head>
   <body>
-
     <a href = '/'>Home</a>
     <a href = '/about'>About</a>
     <a href = '/faq'>FAQ</a>
 <% if (currentUser) { %>
     <a href = '/profile'>Profile</a>
     <a href = '/logout'>Logout</a>
+    <br /><br />
+    Logged in as: <b><%= currentUser.username %></b>
 <% } %>
     <%# <a href = '/blog'>Blog</a>%>
     <% if (!currentUser) { %>

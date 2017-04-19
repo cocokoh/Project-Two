@@ -10,7 +10,6 @@ router.get('/', function(req, res) {
   biz.find({}).distinct('cuisine').exec(function(err, data) {
     if (err) res.send('err')
     biz.find({}).distinct('location').exec(function(err, data1) {
-      // console.log(data1);
       res.render('homepage', {
         cuisine: data,
         location: data1

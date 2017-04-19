@@ -3,25 +3,29 @@
   Are you sure you want to remove your business?
 </p>
 
-<ul>
-
-    <li>
-    <%- restaurants.restaurant_name %>
-    </li>
-    <li>
-      <%- restaurants.email %>
-    </li>
-    <li>
-      <%- restaurants.cuisine %>
-    </li>
-    <li>
-      <%- restaurants.address %>
-    </li>
 
 
 
-</ul>
+    Restaurant: <%- restaurants.restaurant_name %>
+    <br />
 
-<form action="/business/delete?_method=delete" method="post">
+    Email: <%- restaurants.email %>
+    <br />
+
+    Cuisine: <%- restaurants.cuisine %>
+    <br />
+
+    Address: <%- restaurants.address %>
+    <br />
+
+    Description: <%- restaurants.description %>
+    <br />
+
+    Location: <%- restaurants.location %>
+
+
+
+
+<form action="/business/<%- restaurants._id %>/delete?_method=delete" method="post">
   <button type="submit">Delete</button>
 </form>

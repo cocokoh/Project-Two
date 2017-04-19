@@ -5,8 +5,9 @@ var Biz = require('../models/business')
 // var config = require('../config/ppConfig')
 var signup=  require('./userreg')
 var User = require('../models/user')
+var isLoggedIn = require('../middleware/isLoggedIn')
 
-router.get('/bizreg', (function(req, res) {
+router.get('/bizreg', isLoggedIn, (function(req, res) {
     res.render('auth/bizreg');
   }))
 
@@ -21,7 +22,7 @@ router.post('/bizreg', function(req, res) {
     var contact = req.body.contact
     var description = req.body.description
     var location = req.body.location
-    
+
     // console.log(req.user)
     // console.log(ownedby)
 
