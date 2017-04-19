@@ -41,7 +41,7 @@ router.post('/bizreg', function(req, res) {
 
     // for (var i = 0; i < 7; i++) {
     //   if ((Object.values(req.body))[i] === "") {
-    if (newBiz.restaurant_name === "" || newBiz.nealicense === "" || newBiz.address === "" || newBiz.cuisine === "" || newBiz.email === "") {
+    if (newBiz.restaurant_name === "" || newBiz.nealicense === "" || newBiz.address === "" || newBiz.cuisine === "" || newBiz.email === "" || newBiz.description === "" || newBiz.contact === "" || newBiz.location === "") {
       res.send('error')
       // res.redirect('/register')
     } else {

@@ -5,6 +5,7 @@ var db = mongoose.connection
 var users = require('../models/user')
 // var authe = require('./auth')
 var biz = require('../models/business')
+var Review = require('../models/review')
 
 router.get('/', function(req, res) {
   biz.find({}).distinct('cuisine').exec(function(err, data) {
@@ -37,17 +38,44 @@ router.post('/results', function(req, res) {
   })
 })
 
-router.get('/restaurant/profile/:restaurant_name', function(req, res) {
+router.get('/restaurant/profile/:id', function(req, res) {
   biz.findOne({
-      restaurant_name: req.params.restaurant_name
+      _id: req.params.id
     }, function(err, data) {
       if (err) next()
-      console.log(data)
-res.render('restaurantprofile', {restaurant: data}) })
+      Review.find({restaurantId:req.params.id}, function (err,data1){
+      
+res.render('restaurantprofile', {restaurant: data, review: data1}) })
     // console.log(req.params.restaurant_name)})
 })
+})
 
+router.get('/reviews/:id', function(req,res){
+  biz.findOne({_id:req.params.id}, function(err,data){
 
+  res.render('review', {restaurant: data})
+})
+})
+
+router.post('/reviews/:id', function (req,res){
+  var title = req.body.title
+  var comment = req.body.comment
+  var restaurantId = req.params.id
+console.log('tat')
+  var newReview = new Review ({
+    title: title,
+    restaurantId: restaurantId,
+    comment: comment
+  })
+  if (newReview.comment === "") {
+    res.send ('error')
+  } else {
+    newReview.save(function(err, data) {
+      if (err) throw err
+      res.redirect('/restaurant/profile/' + restaurantId)
+    })
+  }
+})
 
 router.get('/about', function(req, res) {
   res.render('about')

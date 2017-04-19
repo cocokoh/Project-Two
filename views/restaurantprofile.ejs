@@ -17,3 +17,15 @@
   <b>Ongoing Promotions:</b>
   <%- restaurant.promotion %>
 </div>
+
+<a href = '/reviews/<%- restaurant.id %>'>Write a Review</a>
+
+
+<div class = 'review'>
+  <b>Reviews</b>
+  <br /><br />
+
+<b>Title: </b><%= review[0].title %>
+<br />
+<b>Comment: </b><%= review[0].comment %>
+</div>

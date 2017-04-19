@@ -1,3 +1,9 @@
+in
+<select id = 'location' type ='text' name = 'location'>
+  <% location.forEach(function(data){ %>
+    <option value="<%- data %>"><%- data %></option>
+      <% }) %>
+
 <ul>
 
     <li>
@@ -77,7 +83,7 @@ biz.remove(function(err, biz) {
     User.findOneAndUpdate({email:req.user.email}, {$set: {business:false}}, function (err, email){
       if (err) throw err
       })}
-      
+
 
     //Returning success messages saying it was deleted
     console.log('DELETE removing ID: ' + biz._id)
