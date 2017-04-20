@@ -71,16 +71,12 @@ var ejsLayouts = require('express-ejs-layouts')
 app.use(ejsLayouts)
 
 // CONNECTING AND USING THE CONTROLLERS FILES
-var main = require('./routes/indexroute')
-var userSign = require('./routes/userreg')
-var bizlogin = require('./routes/bizud')
-var bizreg = require('./routes/bizreg')
-var userlogin = require('./routes/userud')
+var main = require('./routes/indexRoute')
+var userSign = require('./routes/userRoute')
+var bizReg = require('./routes/bizRoute')
 app.use('/', main)
 app.use('/', userSign)
-app.use('/', bizlogin)
-app.use('/', bizreg)
-app.use('/', userlogin)
+app.use('/', bizReg)
 
 
 

@@ -19,9 +19,6 @@ router.get('/', function(req, res) {
 
     })
   })
-  // biz.find({}, function(err, data){
-  //   res.render('homepage', {data: data})
-  // })
 })
 router.post('/results', function(req, res) {
   biz.find({
