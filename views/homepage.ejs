@@ -1,23 +1,30 @@
+<div class='container'>
+    <h2 class = 'header'>CE SOIR</h2>
 
-<div class = 'container'>
-  <h2>This is a webpage for Project Two.</h2>
-
-
-<form action="/results" method="POST">
-I want to eat
-  <select id = 'cuisine' type ='text' name = 'cuisine'>
+    <div class='innercontent'>
+        <form action="/results" method="POST">
+            I want to eat
+            <select id='cuisine' type='text' name='cuisine'>
     <option value=""></option>
     <% cuisine.forEach(function(data){ %>
       <option value="<%- data %>"><%- data %></option>
     <% }) %>
-  </select>
-  food in
-  <select id = 'location' type ='text' name = 'location'>
+  </select> food in
+            <select id='location' type='text' name='location'>
     <% location.forEach(function(data){ %>
       <option value="<%- data %>"><%- data %></option>
     <% }) %>
   </select>
-  <input class="btn btn-primary" type="submit" value='Search'>
-</form>
-
+            <input class="btn btn-primary" type="submit" value='Search'>
+        </form>
+    </div>
+    <a href='#about' class=t opheader>Find Out More</a>
 </div>
+
+<section class=b oxtwo id=about>
+    <p>
+        Food has always been played a big part in our lives. The combination of different herbs and spices, together with sauces and condiments, has accentuated the food we put into our mouths and has differentiated the many cultures and businesses.
+        <br>
+        <br> Being able to stand out in the variety of cuisines available these days has now got to do more than just the taste, but also requires the understanding of the role of marketing tactics and food aesthetics.
+    </p>
+</section>

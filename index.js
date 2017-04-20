@@ -1,19 +1,23 @@
 var express = require('express')
 var app = express()
-require('dotenv').config({ silent: true })
+require('dotenv').config({
+  silent: true
+})
 var mongoose = require('mongoose')
 var port = process.env.PORT || 4000
 var dbURI = process.env.PROD_MONGODB || 'mongodb://localhost:27017/projecttwo'
 mongoose.connect(dbURI)
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', function () {
+db.once('open', function() {
   console.log('connected!')
 })
 mongoose.Promise = global.Promise
 var bodyParser = require('body-parser')
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 app.set('view engine', 'ejs')
@@ -56,12 +60,12 @@ app.use(function(req, res, next) {
 
 
 
-// app.use(function(req,res,next){
-//   res.locals.success_msg = req.flash('sucess_msg')
-//   res.locals.error_msg = req.flash('error_msg')
-//   res.locals.error = req.flash('error')
-//   next()
-// })
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('sucess_msg')
+  res.locals.error_msg = req.flash('error_msg')
+  res.locals.error = req.flash('error')
+  next()
+})
 //+++++++++++++STANDARD STUFF+++++++++++++++++++++++++++++++++++++++++
 
 // TRYING TO LINK CSS
@@ -74,12 +78,13 @@ app.use(ejsLayouts)
 var main = require('./routes/index')
 var userSign = require('./routes/user')
 var bizReg = require('./routes/biz')
+var reviews = require('./routes/review')
 app.use('/', main)
-app.use('/', userSign)
-app.use('/', bizReg)
+app.use('/user', userSign)
+app.use('/business', bizReg)
+app.use('/reviews', reviews)
 
 
-
-app.listen(port, function(){
+app.listen(port, function() {
   console.log('listening to ' + port)
 })

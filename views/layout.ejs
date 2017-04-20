@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Project Two</title>
-    <link rel="stylesheet" type="text/css" href="/style.css"/>
-  </head>
-  <body>
-    <a href = '/'>Home</a>
-    <a href = '/about'>About</a>
-    <a href = '/faq'>FAQ</a>
-<% if (currentUser) { %>
-    <a href = '/profile'>Profile</a>
-    <a href = '/logout'>Logout</a>
-    <br /><br />
-    Logged in as: <b><%= currentUser.username %></b>
-<% } %>
-    <%# <a href = '/blog'>Blog</a>%>
-    <% if (!currentUser) { %>
-    <a href = '/register'>Sign Up</a>
-    <a href = '/login'>Login</a>
-    <% } %>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+</head>
 
-    <%- body %>
-  </body>
+<body>
+    <a href='/'>Home</a>
+    <a href='/about'>About</a>
+    <a href='/faq'>FAQ</a>
+    <% if (currentUser) { %>
+        <a href='/profile'>Profile</a>
+        <a href='/logout'>Logout</a>
+        <br /><br /> Logged in as: <b><%= currentUser.username %></b>
+        <% } %>
+            <%# <a href = '/blog'>Blog</a>%>
+                <% if (!currentUser) { %>
+                    <a href='/register'>Sign Up</a>
+                    <a href='/login'>Login</a>
+                    <% } %>
+                        <% include partials/alerts %>
+                            <%- body %>
+</body>
+
 </html>

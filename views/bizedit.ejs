@@ -1,5 +1,6 @@
 <h2>Edit</h2>
 <form action="/business/<%- business._id %>/edit/?_method=put" method="POST">
+  <h3><%- business.restaurant_name %></h3>
   <div class="form-group">
     <label for="Address">Address</label>
     <input id="Address" class="form-control" type="text" name="address" value = '<%- business.address %>'>

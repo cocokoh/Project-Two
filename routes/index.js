@@ -2,8 +2,10 @@ var express = require('express')
 var router = express.Router()
 var mongoose = require('mongoose')
 var db = mongoose.connection
-var users = require('../models/user')
+var User = require('../models/user')
 var biz = require('../models/business')
+var passport = require('passport')
+var config = require('../config/ppConfig')
 var Review = require('../models/review')
 var isLoggedIn = require('../middleware/isLoggedIn')
 
@@ -20,6 +22,63 @@ router.get('/', function(req, res) {
     })
   })
 })
+
+//--------------------------USER CREATE--------------------------------------
+router.route('/register')
+  .get(function(req, res) {
+    res.render('auth/signup')
+  })
+  .post(function(req, res) {
+    var username = req.body.username
+    var email = req.body.email
+    var password = req.body.password
+    var business = req.body.business
+    var birthday = req.body.birthday
+
+    var newUser = new User({
+      email: email,
+      username: username,
+      password: password,
+      business: business,
+      birthday: birthday
+    })
+
+    if (newUser.username === '' || newUser.email === '' || newUser.password === '') {
+      res.send('error')
+    } else {
+      newUser.save(function(err, data) {
+        if (err) return res.redirect('/register')
+        res.redirect('/login')
+      })
+    }
+  })
+
+router.get('/login', function(req, res) {
+  res.render('auth/login')
+})
+
+//--------------------------BIZ READ PROFILE--------------------------------------
+
+router.get('/profile', isLoggedIn, function(req, res) {
+  // console.log(req.user)
+  if (req.user.business === true) {
+    biz.find({
+      ownedby: req.user.id
+    }, function(err, data) {
+      if (err) next()
+      res.render('bizprofile', {
+        restaurants: data
+      })
+    })
+  } else {
+    User.findById(req.user.id, function(err, data) {
+      res.render('userprofile', {
+        users: data
+      })
+    })
+  }
+})
+//-------------------------------------------
 router.post('/results', function(req, res) {
   biz.find({
     cuisine: req.body.cuisine,
@@ -43,7 +102,7 @@ router.get('/restaurant/profile/:id', function(req, res) {
     Review.find({
       restaurantId: req.params.id
     }, function(err, data1) {
-      users.find({
+      User.find({
         }, function(err, data3) {
 
           res.render('restaurantprofile', {
@@ -57,44 +116,48 @@ router.get('/restaurant/profile/:id', function(req, res) {
 })
 
 
-router.get('/reviews/:id', isLoggedIn, function(req, res) {
-  biz.findOne({
-    _id: req.params.id
-  }, function(err, data) {
-    res.render('review', {
-      restaurant: data
-    })
-  })
-})
-
-
-router.post('/reviews/:id', isLoggedIn, function(req, res) {
-  var title = req.body.title
-  var comment = req.body.comment
-  var restaurantId = req.params.id
-  var userId = req.user
-  var newReview = new Review({
-    title: title,
-    restaurantId: restaurantId,
-    comment: comment,
-    userId: userId
-  })
-  if (newReview.comment === "") {
-    res.send('error')
-  } else {
-    newReview.save(function(err, data) {
-      if (err) throw err
-      res.redirect('/restaurant/profile/' + restaurantId)
-    })
-  }
-})
-
-router.get('/about', function(req, res) {
-  res.render('about')
-})
 
 router.get('/faq', function(req, res) {
   res.render('faq')
+})
+
+//--------------------------USER LOGIN & LOGOUT--------------------------------------
+
+// FLASH
+router.post('/login', passport.authenticate('local', {
+  failureFlash: 'Unsuccessful',
+  failureRedirect: '/login'
+}), (req, res) => {
+  biz.findOne({
+    ownedby: req.user.id
+  }, function(err, data) {
+    var datas = data
+    // console.log(datas.ownedby)
+    // console.log(req.user.id)
+    if (datas) {
+      if (datas.ownedby.equals(req.user.id) && req.user.business === true) {
+        req.flash("success", "successfully logged in")
+        res.redirect('/profile')
+      }
+    } else if (req.user.business === true) {
+      res.redirect('/business/register')
+    } else {
+      res.redirect('/profile')
+    }
+  })
+})
+// {
+//   successRedirect: '/profile',
+//   failureRedirect: '/login',
+//   failureFlash: 'Invalid username and/or password',
+//   successFlash: 'You have logged in'
+// }))
+
+router.get('/logout', isLoggedIn, function(req, res) {
+  req.logout()
+  // FLASH
+  req.flash('success', 'You have logged out')
+  res.redirect('/')
 })
 
 module.exports = router
