@@ -30,17 +30,17 @@ This project is designed based on the four basic functions for persistent storag
 
 Going through the functions of the website, we would notice that:
 1. Sign Up - Reviewing User / Business User
-  1. Create (through GET / POST)
+  * Create (through GET / POST)
 2. Login / Logout
-  1. Read (through GET / POST)
+  * Read (through GET / POST)
 3. User Profile Edit / Delete
-  1. Read and Update and Delete (through GET / POST / PUT / DELETE)
+  * Read and Update and Delete (through GET / POST / PUT / DELETE)
 4. Business Profile Edit / Delete
-  1. Read and Update and Delete (through GET / POST / PUT / DELETE)
+  * Read and Update and Delete (through GET / POST / PUT / DELETE)
 5. Search Function for List of Restaurants
-  1. Read (through GET / POST)
+  * Read (through GET / POST)
 6. Review Box to Leave Comments
-  1. Create / Read (through GET / POST)
+  * Create / Read (through GET / POST)
 
 The code exhibits a demonstration of embedding different models through fields in the Mongoose Schema to smoothen the process of retrieving data across different models. It is a straightforward and basic application of CRUD and RESTful routing which makes use of unique ObjectIDs, that were assigned to a saved entry in the database, in the URL for consistency and ease of data retrieval.
 
