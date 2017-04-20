@@ -17,12 +17,31 @@ router.get('/', function(req, res) {
         cuisine: data,
         location: data1
       })
-
-
     })
   })
 })
 
+router.post('/', function (req, res){
+  var username = req.body.username
+  var email = req.body.email
+  var password = req.body.password
+  var business = true
+  var newUser = new User({
+    email: email,
+    username: username,
+    password: password,
+    business: business
+  })
+
+  if (newUser.username === '' || newUser.email === '' || newUser.password === '') {
+    res.send('error')
+  } else {
+    newUser.save(function(err, data) {
+      if (err) return res.redirect('/register')
+      res.redirect('/login')
+    })
+  }
+})
 //--------------------------USER CREATE--------------------------------------
 router.route('/register')
   .get(function(req, res) {

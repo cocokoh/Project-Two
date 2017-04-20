@@ -71,12 +71,12 @@ router.put('/edit', isLoggedIn, function(req, res) {
 });
 router.get('/delete', isLoggedIn, function(req, res) {
   // console.log(req.user.id)
-  Biz.findOne({
+  User.findOne({
     email: req.user.email
   }, function(err, data) {
     if (err) next()
     res.render('userdelete', {
-      restaurants: data
+      users: data
     })
   })
 })
@@ -94,7 +94,7 @@ router.delete('/delete', function(req, res) {
         } else {
           //Returning success messages saying it was deleted
           console.log('DELETE removing ID: ' + user._id);
-          res.redirect("/profile");
+          res.redirect("/register");
         }
       });
     }

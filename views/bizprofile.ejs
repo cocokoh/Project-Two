@@ -1,42 +1,49 @@
+<div class = 'login'>
+
 <h2>Business Details</h2>
 
 <% restaurants.forEach(function(data){ %>
-<ul>
-    <li>
-    <%- data.restaurant_name %>
-    </li>
-    <li>
-      <%- data.email %>
-    </li>
-    <li>
-      <%- data.cuisine %>
-    </li>
-    <li>
-      <%- data.address %>
-    </li>
-    <li>
-      <%- data.contact %>
-    </li>
-    <li>
-      <%- data.description %>
-    </li>
 
-    <li>
-      <%- data.promotion %>
-    </li>
-    <li>
-      <%- data.location %>
-    </li>
-</ul>
-<a href = '/business/<%- data._id %>/edit'>Edit Business</a>
-<a href = '/business/<%- data._id %>/delete'>Delete Business</a>
+    <b>Restaurant Name: </b><%- data.restaurant_name %>
+    <br />
+
+    <b>Email: </b><%- data.email %>
+<br />
+
+    <b>Cuisine: </b><%- data.cuisine %>
+<br />
+
+    <b>Address: </b>  <%- data.address %>
+<br />
+
+    <b>Contact: </b>  <%- data.contact %>
+
+<br />
+    <b>Description: </b>  <%- data.description %>
+<br />
+
+
+    <b>Promotion: </b>  <%- data.promotion %>
+<br />
+
+    <b>Location: </b>  <%- data.location %>
+
+<br />
+
+<form action ='/business/<%- data._id %>/edit'>
+  <input type = 'submit' value = 'Edit Business' /></form>
+<form action ='/business/<%- data._id %>/delete'>
+<input type = 'submit' value = 'Delete Business' /></form>
+
+<br /><br />
 <% }) %>
 
 
 
+<form action ='/business/register'>
+  <input type = 'submit' value = 'Create New Business' />
+</form><form action ='/user/edit'>
+  <input type = 'submit' value = 'Edit Account' />
+</form>
 
-<a href = '/business/register'>Create New Business</a>
-<a href = '/user/edit'>Edit Account</a>
-
-
-<a href = '/business/delete'>Delete Business</a>
+</div>

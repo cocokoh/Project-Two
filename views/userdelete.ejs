@@ -1,4 +1,13 @@
-<h2>Delete</h2>
+<div class = 'login'>
+
+
+<h2>Delete Your Account</h2>
+User Name : <b><%- users.username %></b>
+<br />
+Email:  <b><%- users.email %></b>
+<br />
+
 <form action="/user/delete?_method=delete" method="post">
-  <button type="submit">Delete</button>
+  <input type="submit" value = 'Delete Account' />
 </form>
+</div>

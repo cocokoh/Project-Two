@@ -32,8 +32,7 @@ var userSchema = new mongoose.Schema({
     type: Boolean
   },
   birthday: {
-    type: Date,
-    required: true
+    type: Date
 
   }
 })

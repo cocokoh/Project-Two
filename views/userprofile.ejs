@@ -1,13 +1,18 @@
-<h2>USER</h2>
+<div class = 'login'>
 
-<ul>
-    <li>
-    User Name : <b><%- users.username %></b>
-    </li>
-    <li>
-    Email:  <b><%- users.email %></b>
-    </li>
-</ul>
 
-<a href = '/user/edit'>Edit Account</a>
-<a href = '/user/delete'>Delete Account</a>
+<h2>User Profile</h2>
+
+  User Name : <b><%- users.username %></b>
+  <br />
+  Email:  <b><%- users.email %></b>
+  <br />
+<br />
+<form action ='/user/edit'>
+  <input type = 'submit' value = 'Edit Account' />
+</form>
+<form action ='/user/delete'>
+  <input type = 'submit' value = 'Delete Account' />
+</form>
+
+</div>

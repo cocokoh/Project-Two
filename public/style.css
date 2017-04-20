@@ -1,27 +1,55 @@
+.topdiv {
+  height: 480px;
+  width: 100%;
+  background-size: 1450px 680px;
+  background-position: center center;
+  background-image: url('/france.jpg')
+  /*position: relative;*/
+}
 .header {
   text-align: center;
   padding-top: 3%;
   color: white;
+  font-size: 80px;
+}
+input{
+  text-align: center;
+  width: 20%;
+  padding: 10px;
+  margin: 5px ;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
+
 }
 .innercontent{
   text-align: center;
-
+  margin-top: 1%;
+  font-size: 18px;
 }
+.boxtwo{
+  height: 200px;
+  width: 100%;
+}
+
 .topheader{
-  text-align: center;
+  margin: 48%;
+  color: white;
 }
-
+.bottomdiv {
+  height: 300px;
+  width: 100%;
+  /*position: relative;*/
+  text-align: center;
+  background-color: orange;
+}
 .aboutpara {
   width: 80%;
   margin-left:10%;
-  margin-top: 2%;
-  padding: 20px;
-  font-family: 'Dosis', sans-serif;
+  padding-top: 10px;
+  font-family: 'Asar', serif;
   font-size:16px;
-}
-
-.postone {
-  text-align: center;
 }
 
 .register {
@@ -29,15 +57,10 @@
   text-align: right;
 }
 
-.container {
-  height: 480px;
-  width: 100%;
-  background-image: url('/pizza.jpg');
-  background-size: 1450px 680px;
-  background-position: center center;
-  position: relative;
+.layout{
+  text-align: center;
+  font-size: 22px;
 }
-
 .table{
   margin-top: 5%;
   width: 100%;
@@ -49,7 +72,10 @@
   margin-top: 2%;
   margin-left:20%;
 }
-
+.login{
+  text-align: center;
+  margin-top: 4%;
+}
 .restaurantprofile{
   margin-left: 20%;
   margin-top: 5%;

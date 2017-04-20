@@ -158,7 +158,7 @@ router.delete('/:id/delete', function(req, res) {
             }
             //Returning success messages saying it was deleted
             console.log('DELETE removing ID: ' + biz._id)
-            res.redirect("/profile");
+            res.redirect("/");
           });
         }
       });
