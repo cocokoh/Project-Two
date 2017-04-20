@@ -75,8 +75,8 @@ var main = require('./routes/indexRoute')
 var userSign = require('./routes/userRoute')
 var bizReg = require('./routes/bizRoute')
 app.use('/', main)
-app.use('/', userSign)
-app.use('/', bizReg)
+// app.use('/', userSign)
+// app.use('/', bizReg)
 
 
 
