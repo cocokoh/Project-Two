@@ -4,6 +4,8 @@ in
     <option value="<%- data %>"><%- data %></option>
       <% }) %>
 
+      <% location.forEach(function(data){ %>
+<% }) %>
 <ul>
 
     <li>

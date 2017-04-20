@@ -27,6 +27,12 @@
 
 <%  review.forEach(function(data){ %>
   <div class = 'review'>
+<% ux.forEach(function(user){
+  if(user.id == data.userId){ %>
+    <b>From: </b><%= user.username %>
+  <%}
+})%>
+<br />
 <b>Title: </b><%= data.title %>
 <br />
 <b>Comment: </b><%= data.comment %>

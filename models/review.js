@@ -14,6 +14,11 @@ var reviewSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Biz'
   },
+  userId:
+  {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
   comment: {
     type: String,
     required: true,

@@ -3,7 +3,6 @@ var router = express.Router()
 var mongoose = require('mongoose')
 var db = mongoose.connection
 var users = require('../models/user')
-// var authe = require('./auth')
 var biz = require('../models/business')
 var Review = require('../models/review')
 var isLoggedIn = require('../middleware/isLoggedIn')
@@ -41,35 +40,50 @@ router.post('/results', function(req, res) {
 
 router.get('/restaurant/profile/:id', function(req, res) {
   biz.find({
-      _id: req.params.id
-    }, function(err, data) {
-      if (err) next()
-      Review.find({restaurantId:req.params.id}, function (err,data1){
+    _id: req.params.id
+  }, function(err, data) {
+    if (err) next()
+    Review.find({
+      restaurantId: req.params.id
+    }, function(err, data1) {
+      users.find({
+        }, function(err, data3) {
 
-res.render('restaurantprofile', {restaurant: data, review: data1}) })
-    // console.log(req.params.restaurant_name)})
-})
-})
-
-router.get('/reviews/:id', isLoggedIn, function(req,res){
-  biz.findOne({_id:req.params.id}, function(err,data){
-
-  res.render('review', {restaurant: data})
-})
+          res.render('restaurantprofile', {
+            restaurant: data,
+            review: data1,
+            ux: data3
+          })
+        })
+    })
+  })
 })
 
-router.post('/reviews/:id', isLoggedIn, function (req,res){
+
+router.get('/reviews/:id', isLoggedIn, function(req, res) {
+  biz.findOne({
+    _id: req.params.id
+  }, function(err, data) {
+    res.render('review', {
+      restaurant: data
+    })
+  })
+})
+
+
+router.post('/reviews/:id', isLoggedIn, function(req, res) {
   var title = req.body.title
   var comment = req.body.comment
   var restaurantId = req.params.id
-// console.log('tat')
-  var newReview = new Review ({
+  var userId = req.user
+  var newReview = new Review({
     title: title,
     restaurantId: restaurantId,
-    comment: comment
+    comment: comment,
+    userId: userId
   })
   if (newReview.comment === "") {
-    res.send ('error')
+    res.send('error')
   } else {
     newReview.save(function(err, data) {
       if (err) throw err
