@@ -72,11 +72,11 @@ app.use(ejsLayouts)
 
 // CONNECTING AND USING THE CONTROLLERS FILES
 var main = require('./routes/index')
-// var userSign = require('./routes/userRoute')
-// var bizReg = require('./routes/bizRoute')
+var userSign = require('./routes/user')
+var bizReg = require('./routes/biz')
 app.use('/', main)
-// app.use('/', userSign)
-// app.use('/', bizReg)
+app.use('/', userSign)
+app.use('/', bizReg)
 
 
 

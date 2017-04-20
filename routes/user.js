@@ -3,7 +3,7 @@ var router = express.Router()
 var User = require('../models/user')
 var passport = require('passport')
 var config = require('../config/ppConfig')
-var bizreg = require('./bizRoute')
+var bizreg = require('./biz')
 var isLoggedIn = require('../middleware/isLoggedIn')
 var Biz = require('../models/business')
 
