@@ -1,4 +1,5 @@
-# [CE SOIR](www.cesoir.herokuapp.com)
+# CE SOIR
+www.cesoir.herokuapp.com
 ## It is a marketing platform for new or existing restaurant owners.
 ## It is also a platform provided to new or loyal customers to visit and review their newly visited or favorite places.
 
@@ -45,4 +46,11 @@ Going through the functions of the website, we would notice that:
 The code exhibits a demonstration of embedding different models through fields in the Mongoose Schema to smoothen the process of retrieving data across different models. It is a straightforward and basic application of CRUD and RESTful routing which makes use of unique ObjectIDs, that were assigned to a saved entry in the database, in the URL for consistency and ease of data retrieval.
 
 ## Done By
-### Koh Bao Ling
+#### Koh Bao Ling
+
+## Assistance from
+#### Sharona
+#### Yi Sheng
+#### Prima
+#### Raymond
+#### Shue Ze
