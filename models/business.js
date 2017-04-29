@@ -25,7 +25,6 @@ var bizSchema = new mongoose.Schema({
   },
   promotion: {
     type: String,
-    required: true,
     minlength: [8, 'Name must be between 8 to 99 characters'],
     maxlength: [99, 'Name must be between 8 to 99 characters']
   },

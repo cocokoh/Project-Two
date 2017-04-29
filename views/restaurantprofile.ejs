@@ -24,10 +24,25 @@
   <b>Ongoing Promotions:</b>
   <%- data.promotion %>
 </div>
-<div class= 'reviewheader'>
-<a href = '/reviews/<%- data.id %>'>Write a Review</a>
+<br /><br />
+WRITE YOUR REVIEW
+<form action = '/reviews/<%= data._id %>' method = 'POST'>
+  <div class="form-group">
+    <label for="Title"></label>
+    <input id="Title" class="form-control" type="text" name="title" placeholder ='Title' >
+  </div>
+
+
+<div class="form-group">
+  <label for="Comment"></label>
+  <input id="Comment" class="form-control" type="text" name="comment" placeholder = 'Comment'>
+</div>
+<input class="btn btn-primary" type="submit">
+</form>
 <% }) %>
 <br /><br />
+
+
   <b>Reviews</b>
 </div>
 

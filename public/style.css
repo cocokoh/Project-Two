@@ -1,9 +1,9 @@
 .topdiv {
   height: 480px;
   width: 100%;
-  background-size: 1450px 680px;
-  background-position: center center;
-  background-image: url('/france.jpg')
+  background-size: cover;
+  background-position: left;
+  /*background-image: url('/pineapple.jpg')*/
   /*position: relative;*/
 }
 .header {

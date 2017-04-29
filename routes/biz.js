@@ -4,7 +4,8 @@ var Biz = require('../models/business')
 var signup = require('./user')
 var User = require('../models/user')
 var isLoggedIn = require('../middleware/isLoggedIn')
-
+var Review = require('../models/review')
+var isBusiness = require('../middleware/isBusiness')
 //--------------------------BIZ CREATE--------------------------------------
 
 router.get('/register', isLoggedIn, (function(req, res) {
@@ -71,7 +72,7 @@ router.post('/register', function(req, res) {
 //   }
 // })
 //--------------------------BIZ UPDATE & DELETE--------------------------------------
-router.get('/:id/edit', isLoggedIn, function(req, res) {
+router.get('/:id/edit', isLoggedIn, isBusiness, function(req, res) {
   Biz.findOne({
     _id: req.params.id
   }, function(err, biz) {
@@ -81,7 +82,7 @@ router.get('/:id/edit', isLoggedIn, function(req, res) {
     })
   })
 })
-router.put('/:id/edit', isLoggedIn, function(req, res) {
+router.put('/:id/edit', isLoggedIn, isBusiness, function(req, res) {
   var address = req.body.address
   var location = req.body.location
   var promotion = req.body.promotion
@@ -112,7 +113,7 @@ router.put('/:id/edit', isLoggedIn, function(req, res) {
     }
   });
 });
-router.get('/:id/delete', isLoggedIn, function(req, res) {
+router.get('/:id/delete', isLoggedIn, isBusiness, function(req, res) {
   // console.log(req.user.id)
   Biz.findOne({
     _id: req.params.id
@@ -125,8 +126,10 @@ router.get('/:id/delete', isLoggedIn, function(req, res) {
 })
 
 router.delete('/:id/delete', function(req, res) {
-  // console.log(req.user.id)
 
+  Review.remove({restaurantId: req.params.id}, function(err,data){
+    if (err) throw err
+})
   Biz.findOne({
     _id: req.params.id
   }, function(err, biz) {
@@ -143,7 +146,6 @@ router.delete('/:id/delete', function(req, res) {
           }, function(err, bizFound) {
             // console.log(bizFound)
             if (bizFound.length === 0) {
-              // console.log('not found any business');
               User.findOneAndUpdate({
                 email: req.user.email
               }, {
@@ -152,9 +154,7 @@ router.delete('/:id/delete', function(req, res) {
                 }
               }, function(err, email) {
                 if (err) throw err
-                // res.redirect("/");
               })
-              //     // res.render('bizprofile', {restaurants: biz})
             }
             //Returning success messages saying it was deleted
             console.log('DELETE removing ID: ' + biz._id)

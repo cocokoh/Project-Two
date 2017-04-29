@@ -97,7 +97,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
     })
   }
 })
-//-------------------------------------------
+//--------------------------------------------------------------------
 router.post('/results', function(req, res) {
   biz.find({
     cuisine: req.body.cuisine,

@@ -6,6 +6,7 @@ var config = require('../config/ppConfig')
 var bizreg = require('./biz')
 var isLoggedIn = require('../middleware/isLoggedIn')
 var Biz = require('../models/business')
+var onlyUser = require('../middleware/onlyUser')
 
 // //--------------------------USER CREATE--------------------------------------
 // router.route('/register')
@@ -43,11 +44,11 @@ var Biz = require('../models/business')
 
 //--------------------------USER UPDATE & DELETE--------------------------------------
 
-router.get('/edit', isLoggedIn, function(req, res) {
+router.get('/edit', isLoggedIn, onlyUser, function(req, res) {
   // console.log(req.user)
   res.render('useredit')
 })
-router.put('/edit', isLoggedIn, function(req, res) {
+router.put('/edit', isLoggedIn, onlyUser, function(req, res) {
   var username = req.body.username
   //find the document by ID
   User.findById(req.user.id, function(err, user) {
@@ -69,7 +70,7 @@ router.put('/edit', isLoggedIn, function(req, res) {
     }
   });
 });
-router.get('/delete', isLoggedIn, function(req, res) {
+router.get('/delete', isLoggedIn, onlyUser, function(req, res) {
   // console.log(req.user.id)
   User.findOne({
     email: req.user.email
