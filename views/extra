@@ -99,3 +99,41 @@ biz.remove(function(err, biz) {
 
 });
 });
+
+--------------------- BIS Profile
+<% restaurants.forEach(function(data){ %>
+
+    <b>Restaurant Name: </b><%- data.restaurant_name %>
+    <br />
+
+    <b>Email: </b><%- data.email %>
+<br />
+
+    <b>Cuisine: </b><%- data.cuisine %>
+<br />
+
+    <b>Address: </b>  <%- data.address %>
+<br />
+
+    <b>Contact: </b>  <%- data.contact %>
+
+<br />
+    <b>Description: </b>  <%- data.description %>
+<br />
+
+
+    <b>Promotion: </b>  <%- data.promotion %>
+<br />
+
+    <b>Location: </b>  <%- data.location %>
+
+<br />
+
+<form action ='/business/<%- data._id %>/edit'>
+  <input type = 'submit' value = 'Edit Business' /></form>
+<form action ='/business/<%- data._id %>/delete'>
+<input type = 'submit' value = 'Delete Business' /></form>
+<form action= '/restaurant/profile/<%- data._id %>'>
+<input type = 'submit' value = 'Restaurant Profile' /></form>
+<br /><br />
+<% }) %>

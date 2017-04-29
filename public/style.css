@@ -1,4 +1,4 @@
-.topdiv {
+/*.topdiv {
   height: 480px;
   width: 100%;
   background-size: cover;
@@ -58,8 +58,8 @@ input{
 }
 
 .layout{
-  text-align: center;
-  font-size: 22px;
+  text-align: right;
+  margin-top: -2%;
 }
 .table{
   margin-top: 5%;
@@ -91,4 +91,4 @@ input{
 .reviewheader{
   margin-top: 2%;
   margin-left: 4%;
-}
+}*/

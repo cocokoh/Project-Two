@@ -1,43 +1,51 @@
-<div class = 'login'>
-
-<h2>Business Details</h2>
-
+<h1>Business Details</h1>
+<br />
 <% restaurants.forEach(function(data){ %>
+<div class="tile is-ancestor">
+  <div class="tile is-8">
+    <div class="tile is-child box">
+      <p class="content"><b>Restaurant Name: </b><%- data.restaurant_name %>
+      <br />
 
-    <b>Restaurant Name: </b><%- data.restaurant_name %>
-    <br />
+      <b>Email: </b><%- data.email %>
+  <br />
 
-    <b>Email: </b><%- data.email %>
-<br />
+      <b>Cuisine: </b><%- data.cuisine %>
+  <br />
 
-    <b>Cuisine: </b><%- data.cuisine %>
-<br />
+      <b>Address: </b>  <%- data.address %>
+  <br />
 
-    <b>Address: </b>  <%- data.address %>
-<br />
+      <b>Contact: </b>  <%- data.contact %>
 
-    <b>Contact: </b>  <%- data.contact %>
-
-<br />
-    <b>Description: </b>  <%- data.description %>
-<br />
+  <br />
+      <b>Description: </b>  <%- data.description %>
+  <br />
 
 
-    <b>Promotion: </b>  <%- data.promotion %>
-<br />
+      <b>Promotion: </b>  <%- data.promotion %>
+  <br />
 
-    <b>Location: </b>  <%- data.location %>
+      <b>Location: </b>  <%- data.location %>
 
-<br />
-
-<form action ='/business/<%- data._id %>/edit'>
-  <input type = 'submit' value = 'Edit Business' /></form>
-<form action ='/business/<%- data._id %>/delete'>
-<input type = 'submit' value = 'Delete Business' /></form>
-<form action= '/restaurant/profile/<%- data._id %>'>
-<input type = 'submit' value = 'Restaurant Profile' /></form>
-<br /><br />
+  <br /></p>
+    </div>
+    <div class="tile is-parent">
+      <p class="title"><form action ='/business/<%- data._id %>/edit'>
+        <input type = 'submit' value = 'Edit Business' class = 'button is-small'/></form>
+      <form action ='/business/<%- data._id %>/delete'>
+      <input type = 'submit' value = 'Delete Business' class = 'button is-small'/></form>
+      <form action= '/restaurant/profile/<%- data._id %>'>
+      <input type = 'submit' value = 'Restaurant Profile' class = 'button is-small'/></form></p>
+    </div>
+    <!-- Add content or other tiles -->
+  </div>
+  <div class="tile">
+    <!-- Add content or other tiles -->
+  </div>
+</div>
 <% }) %>
+
 
 
 
@@ -46,5 +54,3 @@
 </form><form action ='/user/edit'>
   <input type = 'submit' value = 'Edit Account' />
 </form>
-
-</div>

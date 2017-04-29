@@ -5,23 +5,53 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CE SOIR</title>
-    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <%# <link rel="stylesheet" type="text/css" href="/style.css" />%>
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css' />
 </head>
 
 <body>
-  <div class = 'layout'>
-    <a href='/'>Home</a>
-    <% if (currentUser) { %>
-        <a href='/profile'>Profile</a>
-        <a href='/logout'>Logout</a>
-        <br /><br /> Logged in as: <b><%= currentUser.username %></b>
-        <% } %>
-                <% if (!currentUser) { %>
-                    <a href='/register'>Sign Up</a>
-                    <a href='/login'>Login</a>
-                    <% } %>
-                        <% include partials/alerts %>
-                        </div>
+  <nav class="nav has-shadow">
+  <div class="container">
+    <div class="nav-left">
+      <a class="nav-item">
+      </a>
+      <a class="nav-item is-tab is-hidden-mobile" href = '/'>Home</a>
+        <a class="nav-item is-tab is-hidden-mobile" href = '/faq'>FAQ</a>
+    </div>
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <div class="nav-center">
+   <a class="nav-item">
+       <% include partials/alerts %>
+   </a>
+
+ </div>
+    <div class="nav-right nav-menu">
+      <a class="nav-item is-tab is-hidden-tablet is-active" >Home</a>
+      <a class="nav-item is-tab is-hidden-tablet">About</a>
+
+      <a class="nav-item is-tab">
+        <figure class="image is-16x16" style="margin-right: 8px;">
+          <img src="">
+        </figure>
+      </a>
+      <% if (!currentUser) { %>
+          <a class="nav-item is-tab is-hidden-mobile" href='/register'>Sign Up</a>
+          <a class="nav-item is-tab is-hidden-mobile" href='/login'>Login</a>
+          <% } %>
+      <% if (currentUser) { %>
+        <a class="nav-item is-tab">Ça va <%= currentUser.username %></a>
+        <a class="nav-item is-tab" href='/profile'>Profile</a>
+        <a class="nav-item is-tab" href='/logout'>Logout</a>
+          <% } %>
+    </div>
+  </div>
+</nav>
+<section class ='section'>
+
                             <%- body %>
 </body>
 
