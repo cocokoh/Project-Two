@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Biz = require('../models/business')
-var signup = require('./user')
 var User = require('../models/user')
 var isLoggedIn = require('../middleware/isLoggedIn')
 var Review = require('../models/review')
