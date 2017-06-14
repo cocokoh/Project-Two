@@ -8,10 +8,10 @@ require('dotenv').config({
 
 
 var mongoose = require('mongoose')
-var port = 5000
-// var port = process.env.PORT || 5000
-var dbURI = 'mongodb://localhost/projecttwo'
-// var dbURI = process.env.PROD_MONGODB || 'mongodb://localhost:27017/projecttwo'
+// var port = 5000
+var port = process.env.PORT || 5000
+// var dbURI = 'mongodb://localhost/projecttwo'
+var dbURI = process.env.PROD_MONGODB || 'mongodb://localhost:27017/projecttwo'
 mongoose.connect(dbURI)
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
