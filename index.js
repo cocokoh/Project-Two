@@ -3,11 +3,15 @@ var app = express()
 require('dotenv').config({
   silent: true
 })
+
+
+
+
 var mongoose = require('mongoose')
-// var port = 5000
-var port = process.env.PORT || 4000
-// var dbURI = 'mongodb://localhost/projecttwo'
-var dbURI = process.env.PROD_MONGODB || 'mongodb://localhost:27017/projecttwo'
+var port = 5000
+// var port = process.env.PORT || 5000
+var dbURI = 'mongodb://localhost/projecttwo'
+// var dbURI = process.env.PROD_MONGODB || 'mongodb://localhost:27017/projecttwo'
 mongoose.connect(dbURI)
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
@@ -63,7 +67,7 @@ app.use(function(req, res, next) {
 
 
 app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('sucess_msg')
+  res.locals.success_msg = req.flash('success_msg')
   res.locals.error_msg = req.flash('error_msg')
   res.locals.error = req.flash('error')
   next()
@@ -76,16 +80,27 @@ app.use(express.static(path.join(__dirname, 'public')))
 var ejsLayouts = require('express-ejs-layouts')
 app.use(ejsLayouts)
 
+var cloudinary = require('cloudinary')
+var multer = require('multer')
+var upload = multer({dest: './uploads/'})
+var fs = require('fs')
+cloudinary.config({
+  cloud_name: 'programbao',
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+
 // CONNECTING AND USING THE CONTROLLERS FILES
 var main = require('./routes/index')
 var userSign = require('./routes/user')
 var bizReg = require('./routes/biz')
 var reviews = require('./routes/review')
+var bookings = require('./routes/booking')
 app.use('/', main)
 app.use('/user', userSign)
 app.use('/business', bizReg)
 app.use('/reviews', reviews)
-
+app.use('/bookings', bookings)
 
 app.listen(port, function() {
   console.log('listening to ' + port)

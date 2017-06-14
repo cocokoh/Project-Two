@@ -8,6 +8,7 @@ var passport = require('passport')
 var config = require('../config/ppConfig')
 var Review = require('../models/review')
 var isLoggedIn = require('../middleware/isLoggedIn')
+var Booking = require('../models/booking')
 
 router.get('/', function(req, res) {
   biz.find({}).distinct('cuisine').exec(function(err, data) {
@@ -85,14 +86,26 @@ router.get('/profile', isLoggedIn, function(req, res) {
       ownedby: req.user.id
     }, function(err, data) {
       if (err) next()
+      Booking.find({}, function (err, data1) {
+        if (err) throw err
       res.render('bizprofile', {
-        restaurants: data
-      })
+        restaurants: data,
+        booking: data1
+        })
+        })
     })
   } else {
     User.findById(req.user.id, function(err, data) {
-      res.render('userprofile', {
-        users: data
+      if (err) throw err;
+      Booking.find({userId: req.user.id}, function (err, data1) {
+        if (err) throw err
+        biz.find({}, function(err, data2){
+        res.render('userprofile', {
+          users: data,
+          booking: data1,
+          restaurant: data2
+        })
+        })
       })
     })
   }
@@ -100,16 +113,12 @@ router.get('/profile', isLoggedIn, function(req, res) {
 //--------------------------------------------------------------------
 router.post('/results', function(req, res) {
   biz.find({
-    cuisine: req.body.cuisine,
-    location: req.body.location
+    cuisine: req.body.cuisine
   }, function(err, data) {
     if (err) throw err;
-
-
     res.render('restaurant', {
       restaurant: data
     })
-    // })
   })
 })
 
@@ -117,7 +126,6 @@ router.get('/restaurant/profile/:id', function(req, res) {
   biz.find({
     _id: req.params.id
   }, function(err, data) {
-    if (err) next()
     Review.find({
       restaurantId: req.params.id
     }, function(err, data1) {
@@ -145,7 +153,8 @@ router.get('/faq', function(req, res) {
 // FLASH
 router.post('/login', passport.authenticate('local', {
   failureFlash: 'Unsuccessful',
-  failureRedirect: '/login'
+  failureRedirect: 'back',
+  successRedirect: 'back'
 }), (req, res) => {
   biz.findOne({
     ownedby: req.user.id

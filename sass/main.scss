@@ -1,0 +1,65 @@
+// 1. Import the initial variables
+@import "node_modules/bulma/sass/utilities/initial-variables";
+
+// 2. Set your own initial variables
+// Update blue
+$blue: #72d0eb;
+$likethis: #f4e2c4;
+$mustard: #e69e61;
+// Add pink and its invert
+$pink: #8388e2;
+$yellow: #e12283;
+$pink-invert: #fff;
+// Add a serif family
+$family-serif: "Merriweather", "Georgia", serif;
+
+// 3. Set the derived variables
+// Use the new pink as the primary color
+$primary: $mustard;
+$primary-invert: $pink-invert;
+.button.is-primary {
+  background-color: #e69e61;
+  border-color: transparent;
+  color: #fff; }
+
+  .card-image {
+    display: block;
+    position: relative;
+    }
+
+    .image {
+      display: block;
+      position: relative; }
+      .image img {
+        display: block;
+         }
+         .image.is-square img, .image.is-1by1 img, .image.is-4by3 img, .image.is-3by2 img, .image.is-16by9 img, .image.is-2by1 img {
+           bottom: 0;
+           left: 0;
+           position: absolute;
+           right: 0;
+           top: 0;
+            }
+
+               .card {
+                 background-color: white;
+                 box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+                 color: #4a4a4a;
+                 width: 28%;
+                 margin: 2%;
+                 position: relative; }
+
+
+@media screen and (max-width:693px) {
+  .title.is-4 {
+    font-size: 0.8rem;
+  }
+}
+
+// Use the existing orange as the danger color
+$danger: $orange;
+// Use the new serif family
+$family-primary: $family-serif;
+
+// 4. Import the rest of Bulma
+@import "node_modules/bulma/bulma";

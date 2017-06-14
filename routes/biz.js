@@ -6,13 +6,22 @@ var User = require('../models/user')
 var isLoggedIn = require('../middleware/isLoggedIn')
 var Review = require('../models/review')
 var isBusiness = require('../middleware/isBusiness')
+var cloudinary = require('cloudinary')
+var multer = require('multer')
+var upload = multer({dest: '../uploads/'})
+var fs = require('fs');
 //--------------------------BIZ CREATE--------------------------------------
 
 router.get('/register', isLoggedIn, (function(req, res) {
   res.render('auth/bizreg');
 }))
 
-router.post('/register', function(req, res) {
+router.post('/register', upload.single('profilePicture'), function(req, res) {
+    cloudinary.uploader.upload(req.file.path, function (result) {
+      if (result)
+      console.log('uploaded!')
+
+
   var restaurant_name = req.body.restaurant_name
   var nealicense = req.body.nealicense
   var address = req.body.address
@@ -23,9 +32,7 @@ router.post('/register', function(req, res) {
   var contact = req.body.contact
   var description = req.body.description
   var location = req.body.location
-
-  // console.log(req.user)
-  // console.log(ownedby)
+  var picture = result.secure_url
 
   var newBiz = new Biz({
     restaurant_name: restaurant_name,
@@ -37,10 +44,12 @@ router.post('/register', function(req, res) {
     description: description,
     contact: contact,
     promotion: promotion,
-    location: location
+    location: location,
+    picture: picture
   })
+
   if (newBiz.restaurant_name === "" || newBiz.nealicense === "" || newBiz.address === "" || newBiz.cuisine === "" || newBiz.email === "" || newBiz.description === "" || newBiz.contact === "" || newBiz.location === "") {
-    res.send('error')
+    req.flash('error')
     // res.redirect('/register')
   } else {
     newBiz.save(function(err, data) {
@@ -49,7 +58,8 @@ router.post('/register', function(req, res) {
     })
   }
 })
-
+}
+)
 //--------------------------BIZ READ PROFILE--------------------------------------
 
 // router.get('/profile', isLoggedIn, function(req, res) {

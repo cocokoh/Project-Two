@@ -1,61 +1,121 @@
+<div class='container'>
 
-<div class = 'restaurantprofile'>
-<%  restaurant.forEach(function(data){ %>
-  <h2><%- data.restaurant_name %></a></h2>
-  <b>Serving:</b> <%- data.cuisine %> Cuisine
-  <br /> <br />
-  <b>In:</b> <%- data.location %>
-  <br><br />
-  <b>Find them at:</b>
-    <%- data.address %>
-<br /><br />
-<b>Contact them at:</b>
-  <%- data.contact %>
-<br /><br />
-<b>Email them at:</b>
-  <%- data.email %>
-<br /><br />
-</div>
+    <div class="card info">
+        <div class="card-content">
+            <p class="title">
+                <%  restaurant.forEach(function(data){ %>
+                    <%- data.restaurant_name %>
+            </p>
+            <p class="subtitle">
+                <b>Serving:</b>
+                <%- data.cuisine %> Cuisine
+                    <br /> <br />
+                    <b>In:</b>
+                    <%- data.location %>
+                        <br><br />
+                        <b>Find them at:</b>
+                        <%- data.address %>
+                            <br /><br />
+                            <b>Contact them at:</b>
+                            <%- data.contact %>
+                                <br /><br />
+                                <b>Email them at:</b>
+                                <%- data.email %>
+                                    <br /><br />
+                                    <b>Description:</b>
+                                    <%- data.description %>
+                                        <br /><br />
+                                        <b>Ongoing Promotions:</b>
+                                        <%- data.promotion %>
+            </p>
+        </div>
+        <footer class="card-footer">
+            <p class="card-footer-item">
+                <span>
+                  <a class = "button is-primary" onclick="<% modalOpen() %>">Book A Table </a>
+                </span>
+            </p>
+        </footer>
+    </div>
+    <% function modalOpen(){ %>
+        document.getElementById('modalres').classList.add('is-active')
+        <% }  %>
+            <div class="modal" id="modalres">
+                <div class="modal-background" onclick="<% closeModal() %>"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Book A Table</p>
+                    </header>
+                    <section class="modal-card-body">
+                        <form action="/bookings/<%= data._id %>" method="POST">
+                            <div class="form-group">
+                                <label for="Name"></label> Name:
+                                <input id="Name" class="form-control" type="text" placeholder='Name' name="name">
+                            </div>
 
-<div class = 'description'>
-  <b>Description:</b>
-    <%- data.description %>
-<br /><br />
-  <b>Ongoing Promotions:</b>
-  <%- data.promotion %>
-</div>
-<br /><br />
-WRITE YOUR REVIEW
-<form action = '/reviews/<%= data._id %>' method = 'POST'>
-  <div class="form-group">
-    <label for="Title"></label>
-    <input id="Title" class="form-control" type="text" name="title" placeholder ='Title' >
-  </div>
+                            <div class="form-group">
+                                <label for="Contact"></label> Contact:
+                                <input id="Contact" class="form-control" type="number" placeholder='Contact' name="contact">
+                            </div>
 
+                            <div class="form-group">
+                                <label for="Date"></label> Date:
+                                <input id="date" class="form-control" type="date" placeholder='Date' name="date">
+                            </div>
+                            Time
+                            <select type='number' name='time'>
+        <option value="1100">1100</option>
+        <option value="1200">1200</option>
+        <option value="1300">1300</option>
+        <option value="1400">1400</option>
+        </select>
 
-<div class="form-group">
-  <label for="Comment"></label>
-  <input id="Comment" class="form-control" type="text" name="comment" placeholder = 'Comment'>
-</div>
-<input class="btn btn-primary" type="submit">
-</form>
+                            <div class="form-group">
+                                <label for="Pax"></label> Pax:
+                                <input id="pax" class="form-control" type='number' placeholder='Pax' name="pax">
+                            </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <input class="button is-success" type="submit">
+                        </form>
+                        <a class="button" onclick="<% closeModal() %>">Cancel</a>
+                        <% function closeModal() { %>
+                            document.getElementById('modalres').classList.remove('is-active')
+                            <% } %>
+                    </footer>
+                </div>
+            </div>
+<div class ="container review">
+            WRITE YOUR REVIEW
+            <form action='/reviews/<%= data._id %>' method='POST'>
+                <div class="form-group">
+                    <label for="Title"></label>
+                    <input id="Title" class="form-control" type="text" name="title" placeholder='Title'>
+                    </div>
+                    <div class="form-group">
+                        <label for="Comment"></label>
+                        <input id="Comment" class="form-control" type="text" name="comment" placeholder='Comment'>
+                    </div>
+                    <input class="btn btn-primary" type="submit">
+            </form>
+            <% }) %>
+            <br />
+                <b>Reviews</b>
+                <br /><br />
+                <% review.forEach(function(data){ %>
+                    <% ux.forEach(function(user){
+                      if(user.id == data.userId){ %>
+                        <b>From: </b>
+                        <%= user.username %>
+                            <%}})%>
+                                <br />
+                                <b>Title: </b>
+                                <%= data.title %>
+                                    <br />
+                                    <b>Comment: </b>
+                                    <%= data.comment %>
+<br /> <br/>
 <% }) %>
-<br /><br />
-
-
-  <b>Reviews</b>
 </div>
 
-<%  review.forEach(function(data){ %>
-  <div class = 'review'>
-<% ux.forEach(function(user){
-  if(user.id == data.userId){ %>
-    <b>From: </b><%= user.username %>
-  <%}
-})%>
-<br />
-<b>Title: </b><%= data.title %>
-<br />
-<b>Comment: </b><%= data.comment %>
-</div>
-<% }) %>
+    </div>

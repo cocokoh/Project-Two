@@ -1,7 +1,11 @@
 <div class = 'login'>
-
-<h2>Login</h2>
-<h4>Please login to view your account</h4>
+<div class="tile is-ancestor">
+  <div class="tile is-8">
+    <div class="tile is-child box">
+      <p class= "title">
+        Please login to view or edit your account.
+      </p>
+      <p class="content">
 <form action="/login" method="POST">
   <div class="form-group">
     <label for="authEmail"></label>
@@ -13,7 +17,10 @@
     <input id="authPassword" class="form-control" type="password" name="password" placeholder = 'PASSWORD'>
   </div>
 
-  <input class="btn btn-primary" type="submit">
+  <input class="button is-primary" type="submit">
 </form>
 
+</div>
+</p>
+</div>
 </div>

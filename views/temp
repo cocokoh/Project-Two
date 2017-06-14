@@ -1,0 +1,61 @@
+<div class='is-child box'>
+    <p class='title'>
+        About
+    </p>
+    Food has always played a big part in our lives. The combination of different herbs and spices, together with sauces and condiments, has accentuated the food we put into our mouths and has differentiated the many cultures and businesses.
+    <br />CE SOIR is here to for new or small restaurants as a platform for advertising. New restaurants often go unnoticed until a good marketing choice happened. Many new restaurants developed recipes to stand out or engaged in promotions to garner
+    traction. With this app, restaurant owners are given an alternative choice to promote their businesses. Owners can simply sign up as our users and input the details of their restaurants and current promotions. Being able to stand out in the variety
+    of cuisines available these days has now got to do more than just the taste, but also requires the understanding of the role of marketing tactics and food aesthetics.
+</div>
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-8">
+        <div class="tile">
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-warning">
+                    <p class="title">Search Restaurants</p>
+                    <p class="subtitle">
+                        <br />
+                        <form action="/results" method="POST">
+                            I want to eat
+                            <span class='select is-small'>
+          <select id='cuisine' type='text' name='cuisine'>
+  <option value=""></option>
+  <% cuisine.forEach(function(data){ %>
+    <option value="<%- data %>"><%- data %></option>
+  <% }) %>
+  </select> </span> food in
+                            <span class='select is-small'>  <select id='location' type='text' name='location'>
+  <% location.forEach(function(data){ %>
+    <option value="<%- data %>"><%- data %></option>
+  <% }) %>
+  </select>
+  </span>
+                            <br />
+                            <input class="button is-small is-warning is-inverted" type="submit" value='Search'>
+                        </form>
+                    </p>
+                </article>
+                <article class="tile is-child notification is-primary">
+                    <p class="title">Register Your Business</p>
+                    <p class="subtitle">
+                        <form action="/" method="POST">
+                            <div class="form-group">
+                                <label for="authEmail">Email</label>
+                                <br />
+                                <input id="authEmail" class="form-control" type="email" name="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="authPassword">Password</label><br />
+                                <input id="authPassword" class="form-control" type="password" name="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="authName">Username</label><br />
+                                <input id="authName" class="form-control" type="text" name="username">
+                            </div>
+                            <input class="button is-primary is-small is-outlined is-inverted" type="submit">
+                        </form>
+                    </p>
+                </article>
+            </div>
+        </div>

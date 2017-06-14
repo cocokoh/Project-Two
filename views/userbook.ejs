@@ -1,0 +1,45 @@
+<div class = 'login'>
+<div class="tile is-ancestor">
+  <div class="tile is-8">
+    <div class="tile is-child box">
+      <p class= "title">
+        Book A Table
+
+      </p>
+      <p class="content">
+<form action="/bookings/<%= restaurant._id %>" method="POST">
+  <div class="form-group">
+    <label for="Name"></label> Name:
+    <input id="Name" class="form-control" type="text" placeholder='Name' name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="Contact"></label> Contact:
+    <input id="Contact" class="form-control" type="number" placeholder='Contact' name="contact">
+  </div>
+
+  <div class="form-group">
+    <label for="Date"></label> Date:
+    <input id="date" class="form-control" type="date" placeholder='Date' name="date">
+  </div>
+Time
+<select type='number' name='time'>
+<option value="1100">1100</option>
+<option value="1200">1200</option>
+<option value="1300">1300</option>
+<option value="1400">1400</option>
+</select>
+
+  <div class="form-group">
+    <label for="Pax"></label> Pax:
+    <input id="pax" class="form-control" type='number' placeholder='Pax' name="pax">
+  </div>
+
+
+  <input class="btn btn-primary" type="submit">
+</form>
+
+</div>
+</p>
+</div>
+</div>

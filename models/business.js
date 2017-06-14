@@ -59,6 +59,9 @@ var bizSchema = new mongoose.Schema({
   ownedby: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
+  },
+  picture: {
+    type: String
   }
 })
 

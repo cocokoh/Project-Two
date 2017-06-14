@@ -21,7 +21,45 @@
 
 
 <br /><br />
-  <input type="submit" value = 'Update'>
+  <input type="submit" value = 'Update' class ='button is-success'>
 
 </form>
+<a class = 'button is-primary' id = "delete" onclick="<% bizDelete() %>">Delete</a>
+<% function bizDelete(){ %>
+  document.getElementById('modaldelete').classList.add('is-active')
+<% } %>
+<div class="modal" id="modaldelete">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Delete Your Business</p>
+      <button class="delete" onclick = "<% closeModal() %>"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>
+        Are you sure you want to remove your business?
+      </p>
+          Restaurant: <%- business.restaurant_name %>
+          <br />
+          Email: <%- business.email %>
+          <br />
+          Cuisine: <%- business.cuisine %>
+          <br />
+          Address: <%- business.address %>
+          <br />
+          Description: <%- business.description %>
+          <br />
+          Location: <%- business.location %>
+    </section>
+    <footer class="modal-card-foot">
+      <form action="/business/<%- business._id %>/delete?_method=delete" method="post">
+        <button class="button is-danger" type="submit"> Delete</button>
+      </form>
+      <a class="button" onclick="<% closeModal() %>">Cancel</a>
+      <% function closeModal() { %>
+        document.getElementById('modaldelete').classList.remove('is-active')
+      <% } %>
+    </footer>
+  </div>
+</div>
 </div>

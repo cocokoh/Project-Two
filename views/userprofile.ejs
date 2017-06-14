@@ -1,18 +1,92 @@
-<div class = 'login'>
+<article class="message">
+    <div class="message-header">
+        <p><strong>User Name: </strong>
+            <%= users.username %> <strong style='padding-left: 20px;'>Email: </strong>
+                <%= users.email %>
+        </p>
+    </div>
+    <div class="message-body">
+        <br />
+        <a class='button is-primary' href='/user/edit'>Edit</a>
+        <a class='button is-primary' id="delete" onclick="<% userDelete() %>">Delete</a>
+        <% function userDelete(){ %>
+            document.getElementById('modaldelete').classList.add('is-active')
+            <% } %>
+                <div class="modal" id="modaldelete">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title">Delete Your Account</p>
+                            <button class="delete" onclick="<% closeModal() %>"></button>
+                        </header>
+                        <section class="modal-card-body">
+                            User Name : <b><%- users.username %></b>
+                            <br /> Email: <b><%- users.email %></b>
+                            <br />
+                        </section>
+                        <footer class="modal-card-foot">
+                            <form action="/user/delete?_method=delete" method="post">
+                                <button class="button is-danger" type="submit"> Delete</button>
+                            </form>
+                            <a class="button" onclick="<% closeModal() %>">Cancel</a>
+                            <% function closeModal() { %>
+                                document.getElementById('modaldelete').classList.remove('is-active')
+                                <% } %>
+                        </footer>
+                    </div>
+                </div> <br />
 
-
-<h2>User Profile</h2>
-
-  User Name : <b><%- users.username %></b>
-  <br />
-  Email:  <b><%- users.email %></b>
-  <br />
-<br />
-<form action ='/user/edit'>
-  <input type = 'submit' value = 'Edit Account' />
-</form>
-<form action ='/user/delete'>
-  <input type = 'submit' value = 'Delete Account' />
-</form>
-
-</div>
+                <h2><b>Bookings</b></h2> <br />
+                <div class='cardsz'>
+                    <% booking.forEach(function(data){ %>
+                        <% restaurant.forEach(function(res){ %>
+                            <% if (data.userId == currentUser.id && data.restaurantId == res.id && data.booked == true){ %>
+                                <div class="card">
+                                    <header class="card-header">
+                                        <p class="card-header-title">
+                                            <a href='/restaurant/profile/<%= res.id %>'>
+                                                <%= res.restaurant_name %>
+                                            </a>
+                                        </p>
+                                    </header>
+                                    <div class="card-content">
+                                        <div class="content">
+                                            <br /> Booked Under:
+                                            <%= data.name %>
+                                                <br /> Contact:
+                                                <%= data.contact %>
+                                                    <br /> Date:
+                                                    <%= data.date %>
+                                                        <br /> Time:
+                                                        <%= data.time %>
+                                                            <br /> Pax:
+                                                            <%= data.pax %>
+                                                                <br>
+                                        </div>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <a class="card-footer-item" onclick="<% modalOpen() %>">Cancel Reservation</a>
+                                        <% function modalOpen(){ %>
+                                            document.getElementById('<%= data.id %>').classList.add('is-active')
+                                            <% }  %>
+                                            <% function closeModal(){ %>
+                                                document.getElementById('<%= data.id %>').classList.remove('is-active')
+                                                <% }  %>
+                                                <div class="modal" id="<%= data.id %>">
+                                                    <div class="modal-background" onclick="<% closeModal() %>"></div>
+                                                    <div class="modal-card">
+                                                        <header class="modal-card-head">
+                                                            <p class="modal-card-title">Cancel Reservation</p>
+                                                        </header>
+                                                        <section class="modal-card-body">
+                                                             Are you sure?
+                                                            <%= res.restaurant_name %>
+                                                            <%= data.id %>
+                                                        </section>
+                                                        <form action="/bookings/cancel/<%= data.id %>?_method=put" method="post">
+                                                            <input type="submit" value='Cancel Reservation' />
+                                                        </form>
+                                    </footer>
+                                    </div>
+                                    <% }})}) %>
+                                        </div>

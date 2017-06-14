@@ -1,22 +1,31 @@
-<table class = 'table is-narrow'>
-  <% restaurant.forEach(function (data){ %>
+<div class = 'cardsz'>
 
-  <thead>
-    <tr>
-    <th><a href = 'restaurant/profile/<%- data._id %>'><%= data.restaurant_name %></a>
+    <% restaurant.forEach(function (data){ %>
 
-    </th>
-    </tr>
-    <tr>
-    <td>
-    <%= data.description %>
+      <div class="card ">
+          <div class="card-image">
+              <figure class="image is-4by3">
+                    <img src="<%= data.picture %>" href = 'restaurant/profile/<%- data._id %>' alt="Image">
+                </figure>
+            </div>
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4">
+                            <a href = 'restaurant/profile/<%- data._id %>'><%= data.restaurant_name %>
+                        </p>
+                    </div>
+                </div>
 
-    </td>
+                <div class="content">
+                    <%= data.description %>
 
-    </tr>
+                </div>
+            </div>
+        </div>
+<br />
 
-  </thead>
+        <%  }) %>
 
 
-<%  }) %>
-  </table>
+      </div>

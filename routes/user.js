@@ -44,11 +44,10 @@ var onlyUser = require('../middleware/onlyUser')
 
 //--------------------------USER UPDATE & DELETE--------------------------------------
 
-router.get('/edit', isLoggedIn, onlyUser, function(req, res) {
-  // console.log(req.user)
+router.get('/edit', isLoggedIn, function(req, res) {
   res.render('useredit')
 })
-router.put('/edit', isLoggedIn, onlyUser, function(req, res) {
+router.put('/edit', isLoggedIn, function(req, res) {
   var username = req.body.username
   //find the document by ID
   User.findById(req.user.id, function(err, user) {

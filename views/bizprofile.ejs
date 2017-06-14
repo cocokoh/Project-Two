@@ -1,3 +1,11 @@
+<article class="message">
+    <div class="message-header">
+        <p><strong>User Name: </strong>
+          Hello </strong>
+
+        </p>
+    </div>
+    <div class="message-body">
 <h1>Business Details</h1>
 <br />
 <% restaurants.forEach(function(data){ %>
@@ -7,34 +15,19 @@
       <p class="content"><b>Restaurant Name: </b><%- data.restaurant_name %>
       <br />
 
-      <b>Email: </b><%- data.email %>
-  <br />
-
-      <b>Cuisine: </b><%- data.cuisine %>
-  <br />
-
-      <b>Address: </b>  <%- data.address %>
-  <br />
-
-      <b>Contact: </b>  <%- data.contact %>
-
-  <br />
-      <b>Description: </b>  <%- data.description %>
-  <br />
-
-
-      <b>Promotion: </b>  <%- data.promotion %>
-  <br />
-
-      <b>Location: </b>  <%- data.location %>
-
-  <br /></p>
+      <b>Email: </b><%- data.email %>  <br />
+      <b>Cuisine: </b><%- data.cuisine %>  <br />
+      <b>Address: </b>  <%- data.address %>  <br />
+      <b>Contact: </b>  <%- data.contact %>   <br />
+      <b>Description: </b>  <%- data.description %>  <br />
+      <b>Promotion: </b>  <%- data.promotion %>  <br />
+      <b>Location: </b>  <%- data.location %>  <br />
+      </p>
     </div>
-    <div class="tile is-parent">
+    <div class="tile is-parent is-vertical">
       <p class="title"><form action ='/business/<%- data._id %>/edit'>
         <input type = 'submit' value = 'Edit Business' class = 'button is-small'/></form>
-      <form action ='/business/<%- data._id %>/delete'>
-      <input type = 'submit' value = 'Delete Business' class = 'button is-small'/></form>
+        <br />
       <form action= '/restaurant/profile/<%- data._id %>'>
       <input type = 'submit' value = 'Restaurant Profile' class = 'button is-small'/></form></p>
     </div>
@@ -48,9 +41,30 @@
 
 
 
-
-<form action ='/business/register'>
-  <input type = 'submit' value = 'Create New Business' />
+  <div class="tile is-parent">
+  <form action ='/business/register'>
+  <input type = 'submit' value = 'Create New Business' class ='button is-small' />
+<br />
 </form><form action ='/user/edit'>
-  <input type = 'submit' value = 'Edit Account' />
+  <input type = 'submit' value = 'Edit Account' class = 'button is-small' />
 </form>
+</div>
+
+<h2><b>Bookings</b></h2>
+<br />
+<div class = 'cardsz'>
+<% booking.forEach(function(data){ %>
+  <% restaurants.forEach(function(res){ %>
+  <% if (data.restaurantId == res.id) { %>
+  Booked By: <%= data.name %>
+  <br />
+  Contact: <%= data.contact %>
+  <br />
+  Time: <%= data.time %>
+  <br />
+  Date: <%= data.date %>
+  <br />
+  Pax: <%= data.pax %>
+  <br /><br />
+  <% }})}) %>
+</div>

@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CE SOIR</title>
-    <%# <link rel="stylesheet" type="text/css" href="/style.css" />%>
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css' />
+<link rel="stylesheet" type="text/css" href='/css/main.css' />
+<link rel="stylesheet" type="text/css" href='/css/style.css' />
 </head>
 
 <body>
@@ -16,7 +17,7 @@
       <a class="nav-item">
       </a>
       <a class="nav-item is-tab is-hidden-mobile" href = '/'>Home</a>
-        <a class="nav-item is-tab is-hidden-mobile" href = '/faq'>FAQ</a>
+        <a class="nav-item is-tab is-hidden-mobile" href = '/faq'>About</a>
     </div>
     <span class="nav-toggle">
       <span></span>
@@ -33,15 +34,43 @@
       <a class="nav-item is-tab is-hidden-tablet is-active" >Home</a>
       <a class="nav-item is-tab is-hidden-tablet">About</a>
 
-      <a class="nav-item is-tab">
-        <figure class="image is-16x16" style="margin-right: 8px;">
-          <img src="">
-        </figure>
-      </a>
       <% if (!currentUser) { %>
           <a class="nav-item is-tab is-hidden-mobile" href='/register'>Sign Up</a>
-          <a class="nav-item is-tab is-hidden-mobile" href='/login'>Login</a>
+          <a class="nav-item is-tab is-hidden-mobile" onclick="<% modalOpen() %>">Login</a>
           <% } %>
+          <% function modalOpen(){ %>
+            document.getElementById('modaldelete').classList.add('is-active')
+          <% }  %>
+
+          <div class="modal" id="modaldelete">
+              <div class="modal-background" onclick=
+              "<% closeModal() %>"></div>
+              <div class="modal-card">
+                  <header class="modal-card-head">
+                      <p class="modal-card-title">Login</p>
+                  </header>
+                  <section class="modal-card-body">
+                    <form action="/login" method="POST">
+                      <div class="form-group">
+                        <label for="authEmail"></label>
+                        <input id="authEmail" class="form-control" type="email" placeholder='EMAIL' name="email">
+                      </div>
+                      <div class="form-group">
+                        <label for="authPassword"></label>
+                        <input id="authPassword" class="form-control" type="password" name="password" placeholder = 'PASSWORD'>
+                      </div>
+                  </section>
+                  <footer class="modal-card-foot">
+                    <input class="button is-success" type="submit">
+                  </form>
+                      <a class="button" onclick="<% closeModal() %>">Cancel</a>
+                      <% function closeModal() { %>
+                          document.getElementById('modaldelete').classList.remove('is-active')
+                          <% } %>
+                  </footer>
+              </div>
+
+          </div>
       <% if (currentUser) { %>
         <a class="nav-item is-tab">Ça va <%= currentUser.username %></a>
         <a class="nav-item is-tab" href='/profile'>Profile</a>
@@ -50,9 +79,13 @@
     </div>
   </div>
 </nav>
-<section class ='section'>
+
 
                             <%- body %>
+
+                          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
 </body>
 
 </html>
