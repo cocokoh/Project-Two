@@ -4,9 +4,6 @@ require('dotenv').config({
   silent: true
 })
 
-
-
-
 var mongoose = require('mongoose')
 // var port = 5000
 var port = process.env.PORT || 5000
